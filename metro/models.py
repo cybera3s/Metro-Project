@@ -1,4 +1,8 @@
+import os
 import pickle
+import re
+
+from metro.exceptions import RegisterError, LoginError
 
 
 class MetroCard:
@@ -37,7 +41,7 @@ class Passenger:
 
     def __init__(self, id, fullname: str, phone: str, password: str, email: str = None):
         """get user info"""
-        self.__check_user_data(fullname, username, password, phone, email)
+        self.__check_user_data(fullname, password, phone, email)
 
         self.id = id
         self.fullname = fullname
@@ -45,7 +49,7 @@ class Passenger:
         self.password = password
         self.email = email
 
-        Passenger.users = User.__check_create_user_db()
+        Passenger.users = Passenger.__check_create_user_db()
         Passenger.users[self.id] = {"fullname": self.fullname, "email": self.email, "password": self.password,
                                     "obj": self}
 
@@ -62,17 +66,13 @@ class Passenger:
         return cls.users
 
     @staticmethod
-    def __check_user_data(fullname: str, username: str, password: str, phone: str, email: str):
+    def __check_user_data(fullname: str, password: str, phone: str, email: str):
 
         if not fullname.isalpha():
             raise RegisterError("invalid name", "fullname", fullname)
 
-        if not username.lower() and not username.isalnum():
-            msg = "Invalid username: username must be in lower case and contain only numbers and letters"
-            raise RegisterError(msg, "username", username)
-
-        if len(password) < 8:
-            raise RegisterError("Invalid Password: must be more than 8 characters", "password", password)
+        if len(password) < 4:
+            raise RegisterError("Invalid Password: must be more than 4 characters", "password", password)
 
         if not phone.startswith('09'):
             raise RegisterError("must start with 09...", "phone", phone)
