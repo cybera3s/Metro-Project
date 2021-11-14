@@ -85,7 +85,6 @@ class Passenger:
 
     @classmethod
     def login(cls, unique_id):
-
         pass
 
     def __str__(self):
@@ -120,3 +119,10 @@ class BankAccount:
 
     def get_balance(self):
         return self.__balance
+
+    def __str__(self):
+        msg = f"""
+        owner:{self.__owner.fullname}
+        balance:{self.__balance}
+        """
+        return msg
