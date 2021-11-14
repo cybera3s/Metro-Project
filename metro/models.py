@@ -121,8 +121,5 @@ class BankAccount:
         return self.__balance
 
     def __str__(self):
-        msg = f"""
-        owner:{self.__owner.fullname}
-        balance:{self.__balance}
-        """
+        msg = f"""owner:{self.__owner.fullname}, balance:{self.__balance}"""
         return msg
