@@ -8,7 +8,13 @@ from metro.exceptions import RegisterError, LoginError, BankAccountError
 
 class MetroCard:
     """base metro card class"""
-    pass
+
+    # todo: init >> balance >> expire >> price >> owner
+    # todo: method >> save to cards.pk
+    def __init__(self, price: int, owner: Passenger, balance: int = 5000):
+        self.balance = balance
+        self.price = price
+        self.owner = owner
 
 
 class SingleTrip(MetroCard):
@@ -43,7 +49,7 @@ class Passenger:
         self.fullname = fullname
         self.phone = phone
         self.email = email
-
+        # todo : empty list of metro cards
         Passenger.users = Passenger.__check_create_user_db()
         Passenger.users.append(self)
 
