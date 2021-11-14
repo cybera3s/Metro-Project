@@ -31,7 +31,7 @@ class BankAccount:
 class Passenger:
     """Passenger class"""
 
-    def __init__(self, id, fullname, phone, password, email=None):
+    def __init__(self, id, fullname: str, phone: str, password: str, email: str = None):
         """get user info"""
         self.id = id
         self.fullname = fullname
