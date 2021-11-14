@@ -54,7 +54,9 @@ class Passenger:
 
     @classmethod
     def __check_create_user_db(cls):
-
+        """checks if users.pk file exists then assign it to users list
+         otherwise users list is a empty list
+         return users"""
         if os.path.exists('users/users.pk'):
 
             with open('users/users.pk', 'rb') as f:
