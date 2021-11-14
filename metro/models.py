@@ -61,3 +61,7 @@ class Passenger:
         with open("users/users.pk", "wb") as f:
             pickle.dump(self, f)
         return self
+
+    def __str__(self):
+        msg = f"id:{self.id}\nfullname:{self.fullname}\nphone:{self.phone}\nemail:{self.email}"
+        return msg
