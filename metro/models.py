@@ -91,14 +91,14 @@ class Passenger:
     @classmethod
     def login(cls, unique_id: int):
         with open("users/users.pk", "rb") as f:
-            users = pickle.load(f)
+            cls.users = pickle.load(f)
 
-        users_id = list(map(lambda p: p.__unique_id, users))
+        users_id = list(map(lambda p: p.__unique_id, cls.users))
         if unique_id not in users_id:
             raise LoginError('Passenger', "Passenger Doesn't exist")
 
         index = users_id.index(unique_id)    # index of items will not change after applying map function to the list
-        return users[index]
+        return cls.users[index]
 
     def __str__(self):
         msg = f"""
