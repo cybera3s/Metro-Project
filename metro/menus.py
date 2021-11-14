@@ -1,7 +1,7 @@
 def main_menu():
     """main menu function"""
     while True:
-        print("1. register new user")
+        print("1. register new Passenger")
         print("2. manage bank account")
         print("3. register new trip")
         print("4. admin panel")
@@ -10,7 +10,7 @@ def main_menu():
         option = input(">>> ")
 
         if option == "1":
-            # todo: user register
+            # todo: user Passenger
             pass
         elif option == "2":
             # todo: manage bank account
