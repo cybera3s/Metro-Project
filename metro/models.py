@@ -39,19 +39,18 @@ class Passenger:
     """Passenger class"""
     users = None
 
-    def __init__(self, id, fullname: str, phone: str, password: str, email: str = None):
+    def __init__(self, fullname: str, phone: str, email: str = None):
         """get user info"""
-        self.__check_user_data(fullname, password, phone, email)
+        self.__check_user_data(fullname, phone, email)
 
-        self.id = id
+        self.__unique_id = ...
         self.fullname = fullname
         self.phone = phone
-        self.password = password
         self.email = email
 
         Passenger.users = Passenger.__check_create_user_db()
-        Passenger.users[self.id] = {"fullname": self.fullname, "email": self.email, "password": self.password,
-                                    "obj": self}
+        Passenger.users[self.__unique_id] = {"fullname": self.fullname, "phone": self.phone, "email": self.email,
+                                             "obj": self}
 
     @classmethod
     def __check_create_user_db(cls):
