@@ -1,4 +1,5 @@
 def main_menu():
+    """main menu function"""
     while True:
         print("1. register new user")
         print("2. manage bank account")
