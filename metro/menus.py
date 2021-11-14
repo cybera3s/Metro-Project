@@ -14,7 +14,7 @@ def main_menu():
         option = input(">>> ")
 
         if option == "1":
-            # todo: user Passenger
+            register_menu()
             pass
         elif option == "2":
             # todo: manage bank account
@@ -40,6 +40,9 @@ def register_menu():
 
     try:
         passenger = Passenger(fullname, phone_number, email)
-        passenger.register()
+        print(passenger.register())
     except RegisterError as e:
         print(e)
+
+
+main_menu()
