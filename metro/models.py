@@ -54,7 +54,8 @@ class Passenger:
                                              "obj": self}
 
     @staticmethod
-    def __generate_unique_id(self):
+    def __generate_unique_id(self) -> int:
+        """generate a random number more than 6 digits"""
         unique_id = random.randrange(100000, 10 ** 10)
         return unique_id
 
