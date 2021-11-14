@@ -44,15 +44,13 @@ class Passenger:
         """get user info"""
         self.__check_user_data(fullname, phone, email)
 
-        self.__unique_id = int(str(id(self))[4:])    # Use obj id number from index four to last -> int
+        self.__unique_id = int(str(id(self))[4:])  # Use obj id number from index four to last -> int
         self.fullname = fullname
         self.phone = phone
         self.email = email
 
         Passenger.users = Passenger.__check_create_user_db()
-        Passenger.users[self.__unique_id] = {"fullname": self.fullname, "phone": self.phone, "email": self.email,
-                                             "obj": self}
-
+        Passenger.users.append(self)
 
     @classmethod
     def __check_create_user_db(cls):
@@ -62,7 +60,7 @@ class Passenger:
             with open('users/users.pk', 'rb') as f:
                 cls.users = pickle.load(f)
         else:
-            cls.users = {}
+            cls.users = []
 
         return cls.users
 
@@ -87,7 +85,7 @@ class Passenger:
         """save Passenger obj to users.pk file"""
 
         with open("users/users.pk", "wb") as f:
-            pickle.dump(self, f)
+            pickle.dump(Passenger.users, f)
         return self
 
     @classmethod
