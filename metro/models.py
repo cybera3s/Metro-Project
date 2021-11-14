@@ -1,6 +1,5 @@
 import os
 import pickle
-import random
 import re
 
 from metro.exceptions import RegisterError, LoginError, BankAccountError
@@ -11,7 +10,7 @@ class MetroCard:
 
     # todo: init >> balance >> expire >> price >> owner
     # todo: method >> save to cards.pk
-    def __init__(self, price: int, owner: Passenger, balance: int = 5000):
+    def __init__(self, price: int, owner, balance: int = 5000):
         self.balance = balance
         self.price = price
         self.owner = owner
