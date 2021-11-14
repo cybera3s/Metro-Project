@@ -68,7 +68,7 @@ class Passenger:
 
     @staticmethod
     def __check_user_data(fullname: str, phone: str, email: str):
-
+        """checks user data and raise registerError"""
         if not fullname.isalpha():
             raise RegisterError("invalid name", "fullname", fullname)
 
