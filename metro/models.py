@@ -3,7 +3,7 @@ import pickle
 import random
 import re
 
-from metro.exceptions import RegisterError, LoginError
+from metro.exceptions import RegisterError, LoginError, BankAccountError
 
 
 class MetroCard:
@@ -101,8 +101,12 @@ class BankAccount:
         self.__balance = initial_balance
 
     def withdraw(self, amount):
+        """Subtracts the amount from the account balance
+         if balance minus the amount is not less than zero
+         otherwise raises Error"""
         if (self.__balance - amount) <= 0:
-            pass
+            raise BankAccountError("withdraw", "NOT Enough balance to withdraw!")
+
         self.__balance -= amount
 
     def deposit(self, amount):
