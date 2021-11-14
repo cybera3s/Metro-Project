@@ -31,11 +31,6 @@ class Trip:
     pass
 
 
-class BankAccount:
-    """Bank Account for every Passenger"""
-    pass
-
-
 class Passenger:
     """Passenger class"""
     users = None
@@ -96,3 +91,20 @@ class Passenger:
     def __str__(self):
         msg = f"unique_id:{self.__unique_id}\nfullname:{self.fullname}\nphone:{self.phone}\nemail:{self.email}"
         return msg
+
+
+class BankAccount:
+    """Bank Account for every Passenger"""
+
+    def __init__(self, owner: Passenger, initial_balance: int = 0) -> None:
+        self.__owner = owner
+        self.__balance = initial_balance
+
+    def withdraw(self, amount):
+        self.__balance -= amount
+
+    def deposit(self, amount):
+        self.__balance += amount
+
+    def get_balance(self):
+        return self.__balance
