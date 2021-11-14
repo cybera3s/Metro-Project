@@ -17,7 +17,7 @@ def main_menu():
             register_menu()
             pass
         elif option == "2":
-        # todo: manage bank account
+            login_menu()
         elif option == "3":
             # todo: new trip
             pass
