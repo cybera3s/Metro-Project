@@ -65,13 +65,10 @@ class Passenger:
         return cls.users
 
     @staticmethod
-    def __check_user_data(fullname: str, password: str, phone: str, email: str):
+    def __check_user_data(fullname: str, phone: str, email: str):
 
         if not fullname.isalpha():
             raise RegisterError("invalid name", "fullname", fullname)
-
-        if len(password) < 4:
-            raise RegisterError("Invalid Password: must be more than 4 characters", "password", password)
 
         if not phone.startswith('09'):
             raise RegisterError("must start with 09...", "phone", phone)
