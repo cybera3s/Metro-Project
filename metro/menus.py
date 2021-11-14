@@ -51,3 +51,26 @@ def login_menu():
         Passenger.login(unique_id)
     except LoginError as e:
         print(e)
+
+
+def manage_bank_account_menu():
+    """management panel for bank account"""
+    while True:
+        print("1. deposit")
+        print("2. withdraw")
+        print("3. show account balance")
+        print("4. Back to main menu")
+
+        option = input("enter your option: ")
+
+        if option == "1":
+            pass
+        elif option == "2":
+            pass
+        elif option == "3":
+            pass
+        elif option == "4":
+            main_menu()
+        else:
+            print("wrong option, try again")
+            break
