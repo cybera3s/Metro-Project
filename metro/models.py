@@ -26,3 +26,15 @@ class Trip:
 class BankAccount:
     """Bank Account for every Passenger"""
     pass
+
+
+class Passenger:
+    """Passenger class"""
+
+    def __init__(self, id, fullname, phone, password, email=None):
+        """get user info"""
+        self.id = id
+        self.fullname = fullname
+        self.phone = phone
+        self.password = password
+        self.email = email
