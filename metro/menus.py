@@ -45,4 +45,4 @@ def register_menu():
         print(e)
 
 
-main_menu()
+
