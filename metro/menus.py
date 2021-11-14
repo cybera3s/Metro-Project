@@ -48,7 +48,8 @@ def login_menu():
     """login menu passenger"""
     unique_id = int(input("enter your unique id: "))
     try:
-        Passenger.login(unique_id)
+        passenger = Passenger.login(unique_id)
+
     except LoginError as e:
         print(e)
 
@@ -73,4 +74,3 @@ def manage_bank_account_menu():
             main_menu()
         else:
             print("wrong option, try again")
-            break
