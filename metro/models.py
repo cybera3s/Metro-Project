@@ -44,7 +44,7 @@ class Passenger:
         """get user info"""
         self.__check_user_data(fullname, phone, email)
 
-        self.__unique_id = self.__generate_unique_id()
+        self.__unique_id = int(str(id(self))[4:])    # Use obj id number from index four to last -> int
         self.fullname = fullname
         self.phone = phone
         self.email = email
@@ -53,11 +53,6 @@ class Passenger:
         Passenger.users[self.__unique_id] = {"fullname": self.fullname, "phone": self.phone, "email": self.email,
                                              "obj": self}
 
-    @staticmethod
-    def __generate_unique_id(self) -> int:
-        """generate a random number more than 6 digits"""
-        unique_id = random.randrange(100000, 10 ** 10)
-        return unique_id
 
     @classmethod
     def __check_create_user_db(cls):
@@ -89,7 +84,7 @@ class Passenger:
             raise RegisterError("Invalid email format", "email", email)
 
     def register(self):
-        """save Passenger obj to users file"""
+        """save Passenger obj to users.pk file"""
 
         with open("users/users.pk", "wb") as f:
             pickle.dump(self, f)
