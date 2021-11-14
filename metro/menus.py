@@ -1,5 +1,5 @@
 from models import Passenger
-from exceptions import RegisterError
+from exceptions import RegisterError, LoginError
 
 
 def main_menu():
@@ -17,8 +17,7 @@ def main_menu():
             register_menu()
             pass
         elif option == "2":
-            # todo: manage bank account
-            pass
+        # todo: manage bank account
         elif option == "3":
             # todo: new trip
             pass
@@ -47,5 +46,8 @@ def register_menu():
 
 def login_menu():
     """login menu passenger"""
-    unique_id = input("enter your unique id: ")
-    ...
+    unique_id = int(input("enter your unique id: "))
+    try:
+        Passenger.login(unique_id)
+    except LoginError as e:
+        print(e)
