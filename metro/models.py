@@ -38,7 +38,7 @@ class Passenger:
     def __init__(self, fullname: str, phone: str, email: str = None):
         """get user info and check them finally add them end of users list"""
         self.__check_user_data(fullname, phone, email)
-
+        self.bank_account = BankAccount(self)
         self.__unique_id = int(str(id(self))[4:])  # Use obj id number from index four to last -> int
         self.fullname = fullname
         self.phone = phone
