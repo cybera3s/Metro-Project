@@ -55,6 +55,27 @@ class Passenger:
 
         return cls.users
 
+    @staticmethod
+    def __check_user_data(fullname: str, username: str, password: str, phone: str, email: str):
+
+        if not fullname.isalpha():
+            raise RegisterError("invalid name", "fullname", fullname)
+
+        if not username.lower() and not username.isalnum():
+            msg = "Invalid username: username must be in lower case and contain only numbers and letters"
+            raise RegisterError(msg, "username", username)
+
+        if len(password) < 8:
+            raise RegisterError("Invalid Password: must be more than 8 characters", "password", password)
+
+        if not phone.startswith('09'):
+            raise RegisterError("must start with 09...", "phone", phone)
+
+        email_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+
+        if not re.match(email_regex, email):
+            raise RegisterError("Invalid email format", "email", email)
+
     def register(self):
         """save Passenger obj to users file"""
 
