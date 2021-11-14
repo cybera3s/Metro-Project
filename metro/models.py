@@ -1,5 +1,6 @@
 import os
 import pickle
+import random
 import re
 
 from metro.exceptions import RegisterError, LoginError
@@ -43,7 +44,7 @@ class Passenger:
         """get user info"""
         self.__check_user_data(fullname, phone, email)
 
-        self.__unique_id = ...
+        self.__unique_id = self.__generate_unique_id()
         self.fullname = fullname
         self.phone = phone
         self.email = email
@@ -51,6 +52,11 @@ class Passenger:
         Passenger.users = Passenger.__check_create_user_db()
         Passenger.users[self.__unique_id] = {"fullname": self.fullname, "phone": self.phone, "email": self.email,
                                              "obj": self}
+
+    @staticmethod
+    def __generate_unique_id(self):
+        unique_id = random.randrange(100000, 10 ** 10)
+        return unique_id
 
     @classmethod
     def __check_create_user_db(cls):
