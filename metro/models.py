@@ -38,3 +38,10 @@ class Passenger:
         self.phone = phone
         self.password = password
         self.email = email
+
+    def register(self):
+        """save Passenger info to users file"""
+
+        with open("users/users.pk", "wb") as f:
+            pickle.dump(cls.users, f)
+        return self
