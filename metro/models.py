@@ -4,5 +4,9 @@ class MetroCard:
 
 
 class SingleTrip(MetroCard):
-    """Single Trip card class"""
+    """Metro Single Trip card class"""
+    pass
+
+class CreditCard(MetroCard):
+    """Metro Credit Card class"""
     pass
