@@ -101,6 +101,8 @@ class BankAccount:
         self.__balance = initial_balance
 
     def withdraw(self, amount):
+        if (self.__balance - amount) <= 0:
+            pass
         self.__balance -= amount
 
     def deposit(self, amount):
