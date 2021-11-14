@@ -13,6 +13,10 @@ class CreditCard(MetroCard):
     pass
 
 
+class TimeCredit(MetroCard):
+    """Metro time credit card class"""
+    pass
+
 class Trip:
     """Trip class"""
     pass
