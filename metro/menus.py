@@ -1,3 +1,7 @@
+from models import Passenger
+from exceptions import RegisterError
+
+
 def main_menu():
     """main menu function"""
     while True:
@@ -26,3 +30,16 @@ def main_menu():
             break
         else:
             print("wrong option, try again")
+
+
+def register_menu():
+    """register new Passenger"""
+    fullname = input("enter your fullname : ")
+    phone_number = input("enter your phone number : ")
+    email = input("enter your email(optional): ")
+
+    try:
+        passenger = Passenger(fullname, phone_number, email)
+        passenger.register()
+    except RegisterError as e:
+        print(e)
