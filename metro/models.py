@@ -1,3 +1,6 @@
+import pickle
+
+
 class MetroCard:
     """base metro card class"""
     pass
@@ -30,6 +33,7 @@ class BankAccount:
 
 class Passenger:
     """Passenger class"""
+    users = None
 
     def __init__(self, id, fullname: str, phone: str, password: str, email: str = None):
         """get user info"""
@@ -39,9 +43,21 @@ class Passenger:
         self.password = password
         self.email = email
 
+    @classmethod
+    def __check_create_user_db(cls):
+
+        if os.path.exists('users/users.pk'):
+
+            with open('users/users.pk', 'rb') as f:
+                cls.users = pickle.load(f)
+        else:
+            cls.users = {}
+
+        return cls.users
+
     def register(self):
-        """save Passenger info to users file"""
+        """save Passenger obj to users file"""
 
         with open("users/users.pk", "wb") as f:
-            pickle.dump(cls.users, f)
+            pickle.dump(self, f)
         return self
