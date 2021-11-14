@@ -37,11 +37,17 @@ class Passenger:
 
     def __init__(self, id, fullname: str, phone: str, password: str, email: str = None):
         """get user info"""
+        self.__check_user_data(fullname, username, password, phone, email)
+
         self.id = id
         self.fullname = fullname
         self.phone = phone
         self.password = password
         self.email = email
+
+        Passenger.users = User.__check_create_user_db()
+        Passenger.users[self.id] = {"fullname": self.fullname, "email": self.email, "password": self.password,
+                                    "obj": self}
 
     @classmethod
     def __check_create_user_db(cls):
