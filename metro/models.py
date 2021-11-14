@@ -73,10 +73,11 @@ class Passenger:
         if not phone.startswith('09'):
             raise RegisterError("must start with 09...", "phone", phone)
 
-        email_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+        if email:
 
-        if not re.match(email_regex, email):
-            raise RegisterError("Invalid email format", "email", email)
+            email_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+            if not re.match(email_regex, email):
+                raise RegisterError("Invalid email format", "email", email)
 
     def register(self):
         """save Passenger obj to users.pk file"""
