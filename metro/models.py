@@ -12,6 +12,12 @@ class CreditCard(MetroCard):
     """Metro Credit Card class"""
     pass
 
+
 class Trip:
     """Trip class"""
+    pass
+
+
+class BankAccount:
+    """Bank Account for every Passenger"""
     pass
