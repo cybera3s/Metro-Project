@@ -119,6 +119,7 @@ class MetroCard(ABC):
     def save_card(self):
         """save cards list to file"""
         MetroCard.cards = self.load_cards()
+        MetroCard.cards.append(self)
 
         with open("cards/cards.pk", "wb") as f:
             pickle.dump(MetroCard.cards, f)
