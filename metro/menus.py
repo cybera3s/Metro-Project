@@ -19,7 +19,7 @@ def main_menu():
 
         elif option == "2":
 
-            login_menu()
+            authenticate()
 
         elif option == "3":
 
@@ -53,11 +53,11 @@ def register_menu():
         print(e)
 
 
-def authenticate():
+def authenticate(unique_id):
     """authenticate a passenger by unique_id"""
-    unique_id = int(input("enter your unique id: "))
+
     try:
-        passenger = Passenger.authenticate(unique_id)
+        return Passenger.authenticate(unique_id)
 
     except AuthenticationError as e:
         print(e)
