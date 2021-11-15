@@ -67,7 +67,7 @@ class Passenger:
     def __check_user_data(fullname: str, phone: str, email: str):
         """checks user data and raise registerError"""
         if not fullname.isalpha():
-            raise RegisterError("invalid name", "fullname", fullname)
+            raise RegisterError("invalid name, fullname must only contains letters", "fullname", fullname)
 
         if not phone.startswith('09'):
             raise RegisterError("must start with 09...", "phone", phone)
