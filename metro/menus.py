@@ -1,5 +1,5 @@
 from models import Passenger
-from exceptions import RegisterError, AuthenticationError, BankAccountError
+from metro.exceptions import RegisterError, BankAccountError, AuthenticationError
 
 
 def main_menu():
@@ -20,7 +20,11 @@ def main_menu():
         elif option == "2":
 
             unique_id = int(input("enter your unique id: "))
-            manage_bank_account_menu(authenticate(unique_id))
+            try:
+                Passenger.authenticate(unique_id)
+            except AuthenticationError as e:
+                print(f"wrong input")
+            manage_bank_account_menu(passenger)
 
         elif option == "3":
 
