@@ -53,13 +53,13 @@ def register_menu():
         print(e)
 
 
-def login_menu():
+def authenticate():
     """login menu passenger"""
     unique_id = int(input("enter your unique id: "))
     try:
-        passenger = Passenger.login(unique_id)
+        passenger = Passenger.authenticate(unique_id)
 
-    except LoginError as e:
+    except AuthenticationError as e:
         print(e)
 
 
