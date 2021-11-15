@@ -59,8 +59,7 @@ class Passenger:
          return users"""
         if os.path.exists('users/users.pk'):
 
-            with open('users/users.pk', 'rb') as f:
-                cls.users = pickle.load(f)
+            cls.users = cls.load_data()
         else:
             cls.users = []
 
