@@ -1,4 +1,4 @@
-from models import Passenger, SingleTrip, CreditCard, TimeCredit
+from models import Passenger, SingleTrip, CreditCard, TimeCredit, Trip
 from metro.exceptions import RegisterError, BankAccountError, AuthenticationError
 
 
@@ -135,8 +135,15 @@ def card_menu(passenger):
                     print(f"{i}: {c}")
 
                 card = input("select your card: ")
+                selected = my_cards[int(card)-1]
 
+                print(selected, " selected")
+                print(Trip.get_stations())
 
+                origin = input("enter origin station: ")
+                destination = input("enter destination station: ")
+
+                trip = Trip(origin, destination)
 
         elif option == "2":
 
@@ -185,4 +192,3 @@ def buy_cards_menu(passenger):
         else:
 
             print("wrong option, try again")
-
