@@ -172,7 +172,15 @@ class TimeCredit(MetroCard):
 
 class Trip:
     """Trip class"""
-    pass
+    PRICE: int = 1500
+    STATIONS = ["A", "B", "C", "D", "E", "F"]
+
+    def __init__(self, origin, destination):
+        self.origin = origin
+        self.destination = destination
+
+        self.start_time = datetime.now()
+
 
 
 class BankAccount:
