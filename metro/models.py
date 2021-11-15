@@ -185,12 +185,13 @@ class Trip:
     def duration(self):
         """get trip duration"""
         distance = abs(Trip.STATIONS.index(self.destination) - Trip.STATIONS.index(self.origin))
-        return distance * 5   # The time to reach each station is 5 seconds
+        return distance * 5  # The time to reach each station is 5 seconds
 
     @classmethod
     def get_stations(cls):
         """get stations"""
         return "\n".join(cls.STATIONS)
+
 
 class BankAccount:
     """Bank Account for every Passenger"""

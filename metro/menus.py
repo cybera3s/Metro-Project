@@ -127,10 +127,16 @@ def card_menu(passenger):
         if option == "1":
 
             if not passenger.list_cards():
-                print("there is no card for select, buy first")
+                print("There is no card to show, Buy first")
             else:
-                for i, c in enumerate(passenger.list_cards(), 1):
-                    print(f"{i} : {c}")
+                my_cards = passenger.list_cards()
+
+                for i, c in enumerate(my_cards, 1):
+                    print(f"{i}: {c}")
+
+                card = input("select your card: ")
+
+
 
         elif option == "2":
 
