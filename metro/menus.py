@@ -1,4 +1,4 @@
-from models import Passenger
+from models import Passenger, SingleTrip, CreditCard, TimeCredit
 from metro.exceptions import RegisterError, BankAccountError, AuthenticationError
 
 
@@ -119,12 +119,12 @@ def manage_bank_account_menu(passenger):
 def card_menu(passenger):
     if not passenger.load_cards():
         print("you have to buy cards first, there is no cards !!")
-        buy_cards_menu()
+        buy_cards_menu(passenger)
     else:
         pass
 
 
-def buy_cards_menu():
+def buy_cards_menu(passenger):
     """buy cards menu"""
     while True:
         print("1. buy Single Trip metro card")
