@@ -100,15 +100,18 @@ class Passenger:
 
 class MetroCard(ABC):
     """base metro card class"""
+    cards = None
 
     @abstractmethod
     def __init__(self, price: int, owner: Passenger):
         pass
 
-    @abstractmethod
     def save_card(self):
-        pass
+        """save cards list to file"""
+        MetroCard.cards.append(self)
 
+        with open("cards/cards.pk", "wb") as f:
+            pickle.dump(MetroCard.cards, f)
 
 class SingleTrip(MetroCard):
     """Metro Single Trip card class"""
@@ -116,7 +119,6 @@ class SingleTrip(MetroCard):
     def __init__(self, owner: Passenger, price: int = 1000):
         self.price = price
         self.owner = owner
-
 
 
 class CreditCard(MetroCard):
