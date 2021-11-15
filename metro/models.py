@@ -202,7 +202,7 @@ class Trip:
     @classmethod
     def get_stations(cls):
         """get stations"""
-        return "\n".join(cls.STATIONS)
+        return ", ".join(cls.STATIONS)
 
     def progress(self):
         origin = self.origin
