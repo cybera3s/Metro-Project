@@ -14,19 +14,28 @@ def main_menu():
         option = input(">>> ")
 
         if option == "1":
+
             register_menu()
-            pass
+
         elif option == "2":
+
             login_menu()
+
         elif option == "3":
+
             # todo: new trip
             pass
+
         elif option == "4":
+
             # todo: admin panel section
             pass
+
         elif option == "5":
+
             # todo: exit
             break
+
         else:
             print("wrong option, try again")
 
