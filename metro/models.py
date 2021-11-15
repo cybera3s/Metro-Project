@@ -135,8 +135,10 @@ class BankAccount:
             raise BankAccountError("withdraw", "NOT Enough balance to withdraw!")
 
         self.__balance -= amount
+        self.__owner.save_data()
 
     def deposit(self, amount):
+
         self.__balance += amount
         self.__owner.save_data()
 
