@@ -89,6 +89,13 @@ class Passenger:
         return self
 
     @classmethod
+    def load_data(cls):
+        """load users data of file"""
+        with open("users/users.pk", "rb") as f:
+            return pickle.load(f)
+
+
+    @classmethod
     def login(cls, unique_id: int):
         with open("users/users.pk", "rb") as f:
             cls.users = pickle.load(f)
