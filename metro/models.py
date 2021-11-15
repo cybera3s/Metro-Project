@@ -112,7 +112,11 @@ class MetroCard(ABC):
 
 class SingleTrip(MetroCard):
     """Metro Single Trip card class"""
-    pass
+
+    def __init__(self, owner: Passenger, price: int = 1000):
+        self.price = price
+        self.owner = owner
+
 
 
 class CreditCard(MetroCard):
