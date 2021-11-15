@@ -4,6 +4,7 @@ import re
 from abc import ABC, abstractmethod
 from metro.exceptions import RegisterError, AuthenticationError, BankAccountError
 from datetime import datetime, timedelta
+import time
 
 
 class Passenger:
@@ -191,6 +192,17 @@ class Trip:
     def get_stations(cls):
         """get stations"""
         return "\n".join(cls.STATIONS)
+
+    def progress(self):
+        origin = self.origin
+        destination = self.destination
+
+        print(f"{origin}:", end=" ")
+        for s in range(self.duration()):
+
+            print(">", end=" ")
+            time.sleep(1)
+        print(f": {destination}")
 
 
 class BankAccount:
