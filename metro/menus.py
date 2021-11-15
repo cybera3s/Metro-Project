@@ -148,8 +148,8 @@ def buy_cards_menu(passenger):
     """buy cards menu"""
     while True:
         print("1. buy Single Trip metro card for 1000")
-        print("2. buy credit metro card for 2000")
-        print("3. buy time-credit metro card 3000")
+        print("2. buy credit metro card for 5000")
+        print("3. buy time-credit metro card 6000")
         print("4. back to cards menu")
 
         option = input("your option>>> ")
