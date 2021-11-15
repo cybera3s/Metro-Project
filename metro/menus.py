@@ -62,7 +62,7 @@ def authenticate(unique_id):
         print(e)
 
 
-def manage_bank_account_menu():
+def manage_bank_account_menu(passenger):
     """management panel for bank account"""
     while True:
         print("1. deposit")
