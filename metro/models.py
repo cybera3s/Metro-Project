@@ -177,6 +177,8 @@ class Trip:
     STATIONS = ["A", "B", "C", "D", "E", "F"]
 
     def __init__(self, origin, destination):
+
+        self.__check_data(origin, destination)
         self.origin = origin
         self.destination = destination
 
