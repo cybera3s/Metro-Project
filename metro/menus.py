@@ -21,10 +21,11 @@ def main_menu():
 
             unique_id = int(input("enter your unique id: "))
             try:
-                Passenger.authenticate(unique_id)
-            except AuthenticationError as e:
-                print(f"wrong input")
-            manage_bank_account_menu(passenger)
+                passenger = Passenger.authenticate(unique_id)
+                manage_bank_account_menu(passenger)
+
+            except (AuthenticationError, BankAccountError) as e:
+                print(e)
 
         elif option == "3":
 
