@@ -183,6 +183,14 @@ class Trip:
         self.start_time = datetime.now()
         self.end_time = self.start_time + timedelta(seconds=self.duration())
 
+    @staticmethod
+    def __check_data(origin: str, destination: str):
+        if origin not in Trip.STATIONS or origin.lower() not in Trip.STATIONS:
+            pass
+
+        if destination not in Trip.STATIONS or destination.lower() not in Trip.STATIONS:
+            pass
+
     def duration(self):
         """get trip duration"""
         distance = abs(Trip.STATIONS.index(self.destination) - Trip.STATIONS.index(self.origin))
@@ -199,7 +207,6 @@ class Trip:
 
         print(f"{origin}:", end=" ")
         for s in range(self.duration()):
-
             print(">", end=" ")
             time.sleep(1)
         print(f": {destination}")
@@ -211,6 +218,7 @@ class Trip:
     end time: {self.end_time}
     duration: {self.duration()} seconds"""
         return msg
+
 
 class BankAccount:
     """Bank Account for every Passenger"""
