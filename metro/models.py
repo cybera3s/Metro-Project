@@ -91,10 +91,11 @@ class Passenger:
         with open("users/users.pk", "rb") as f:
             return pickle.load(f)
 
-    def save_data(self):
-        """save Passenger object to file"""
+    @classmethod
+    def save_data(cls):
+        """save Passenger users list to file"""
         with open("users/users.pk", 'wb') as f:
-            pickle.dump(self, f)
+            pickle.dump(cls.users, f)
 
     @classmethod
     def authenticate(cls, unique_id: int):
