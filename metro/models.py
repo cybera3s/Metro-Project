@@ -146,7 +146,14 @@ class SingleTrip(MetroCard):
 
 class CreditCard(MetroCard):
     """Metro Credit Card class"""
-    pass
+
+    def __init__(self, owner: Passenger, balance: int = 2000, price: int = 5000):
+        super().__init__(price, owner)
+        self.balance = balance
+
+    def __str__(self):
+        return f"credit metro card"
+
 
 
 class TimeCredit(MetroCard):
