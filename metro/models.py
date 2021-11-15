@@ -79,7 +79,7 @@ class Passenger:
         return cls.users[index]
 
     @classmethod
-    def load_cards(cls):
+    def list_cards(cls):
         if os.path.exists('cards/cards.pk'):
             with open("cards/cards.pk", 'rb') as f:
                 cards = pickle.load(f)

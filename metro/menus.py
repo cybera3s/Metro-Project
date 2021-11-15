@@ -117,7 +117,7 @@ def manage_bank_account_menu(passenger):
 
 
 def card_menu(passenger):
-    if not passenger.load_cards():
+    if not passenger.list_cards():
         print("you have to buy cards first, there is no cards !!")
         buy_cards_menu(passenger)
     else:
