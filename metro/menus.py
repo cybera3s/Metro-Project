@@ -136,7 +136,8 @@ def buy_cards_menu(passenger):
 
         if option == "1":
 
-            pass
+            card = SingleTrip(passenger)
+            card.save_card()
 
         elif option == "2":
 
