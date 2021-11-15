@@ -7,7 +7,7 @@ class RegisterError(Exception):
         self.data = data
 
     def __str__(self):
-        return f"Error on field `{self.field}` (invalid data: `{self.data}`): {self.msg}"
+        return f"Error on field '{self.field}' (invalid data: '{self.data}'): {self.msg}"
 
 
 class AuthenticationError(Exception):
@@ -18,7 +18,7 @@ class AuthenticationError(Exception):
         self.msg = msg
 
     def __str__(self):
-        return f"Error due to `{self.reason}` >> {self.msg}"
+        return f"Error due to '{self.reason}' >> '{self.msg}'"
 
 
 class BankAccountError(Exception):
