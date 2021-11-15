@@ -78,13 +78,16 @@ class Passenger:
         index = users_id.index(unique_id)  # index of items will not change after applying map function to the list
         return cls.users[index]
 
-    @classmethod
-    def list_cards(cls, unique_id):
+    def list_cards(self):
         if os.path.exists('cards/cards.pk'):
             with open("cards/cards.pk", 'rb') as f:
                 cards = pickle.load(f)
-                my_cards = list(filter(lambda c: c.owner.__unique_id == unique_id, cards))
-                return my_cards
+                my_cards = list(filter(lambda c: c.owner.__unique_id == self.__unique_id, cards))
+
+                if my_cards:
+                    return my_cards
+                else:
+                    return False
         else:
             return False
 
@@ -129,6 +132,7 @@ class MetroCard(ABC):
     def __str__(self):
         pass
 
+
 class SingleTrip(MetroCard):
     """Metro Single Trip card class"""
 
@@ -138,6 +142,7 @@ class SingleTrip(MetroCard):
 
     def __str__(self):
         return f"Single trip metro Card"
+
 
 class CreditCard(MetroCard):
     """Metro Credit Card class"""
