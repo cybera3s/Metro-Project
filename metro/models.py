@@ -138,6 +138,10 @@ class BankAccount:
         self.__owner.save_data()
 
     def deposit(self, amount: str):
+        """If the input amount is valid, adds
+        it to the account balance then saves it
+         , otherwise it returns an error."""
+
         if not amount.isdigit() or int(amount) < 0:
             raise BankAccountError("deposit", "deposit amount must be a number and greater than zero!")
         self.__balance += amount
