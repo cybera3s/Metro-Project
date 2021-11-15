@@ -29,8 +29,12 @@ def main_menu():
 
         elif option == "3":
 
-            # todo: new trip
-            pass
+            unique_id = int(input("enter your unique id: "))
+            try:
+                passenger = Passenger.authenticate(unique_id)
+
+            except (AuthenticationError, BankAccountError) as e:
+                print(e)
 
         elif option == "4":
 
