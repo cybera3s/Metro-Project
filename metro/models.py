@@ -136,6 +136,8 @@ class SingleTrip(MetroCard):
         self.price = price
         self.owner = owner
 
+    def __str__(self):
+        return f"Single trip metro Card"
 
 class CreditCard(MetroCard):
     """Metro Credit Card class"""
