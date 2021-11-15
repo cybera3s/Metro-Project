@@ -204,6 +204,13 @@ class Trip:
             time.sleep(1)
         print(f": {destination}")
 
+    def __str__(self):
+        msg = f"""origin: {self.origin}
+    destination: {self.destination}
+    start time: {self.start_time}
+    end time: {self.end_time}
+    duration: {self.duration()} seconds"""
+        return msg
 
 class BankAccount:
     """Bank Account for every Passenger"""
