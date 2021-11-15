@@ -2,7 +2,7 @@ import os
 import pickle
 import re
 
-from metro.exceptions import RegisterError, LoginError, BankAccountError
+from metro.exceptions import RegisterError, AuthenticationError, BankAccountError
 
 
 class MetroCard:
@@ -101,7 +101,7 @@ class Passenger:
         users_id = list(map(lambda p: p.__unique_id, cls.users))
 
         if unique_id not in users_id:
-            raise LoginError('Passenger', "Passenger Doesn't exist")
+            raise AuthenticationError('Passenger', "Passenger Doesn't exist")
 
         index = users_id.index(unique_id)  # index of items will not change after applying map function to the list
         return cls.users[index]
