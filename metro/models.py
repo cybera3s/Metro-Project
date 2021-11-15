@@ -134,7 +134,7 @@ class BankAccount:
         if (self.__balance - int(amount)) <= 0:
             raise BankAccountError("withdraw", "NOT Enough balance to withdraw!")
 
-        if not amount.isdigit() or int(amount) < 0:
+        if not amount.isdigit() or int(amount) <= 0:
             raise BankAccountError("withdraw", "withdraw amount must be a number and greater than zero!")
 
         self.__balance -= int(amount)
@@ -145,7 +145,7 @@ class BankAccount:
         it to the account balance then saves it
          , otherwise it returns an error."""
 
-        if not amount.isdigit() or int(amount) < 0:
+        if not amount.isdigit() or int(amount) <= 0:
             raise BankAccountError("deposit", "deposit amount must be a number and greater than zero!")
 
         self.__balance += int(amount)
