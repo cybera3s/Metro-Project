@@ -137,8 +137,9 @@ class BankAccount:
         self.__balance -= amount
         self.__owner.save_data()
 
-    def deposit(self, amount):
-
+    def deposit(self, amount: str):
+        if not amount.isdigit() or int(amount) < 0:
+            raise BankAccountError("deposit", "deposit amount must be a number and greater than zero!")
         self.__balance += amount
         self.__owner.save_data()
 
