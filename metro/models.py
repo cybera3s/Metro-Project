@@ -3,6 +3,7 @@ import pickle
 import re
 from abc import ABC, abstractmethod
 from metro.exceptions import RegisterError, AuthenticationError, BankAccountError
+import datetime
 
 
 class Passenger:
@@ -161,6 +162,7 @@ class TimeCredit(MetroCard):
         super().__init__(price, owner)
         self.balance = balance
         self.expire_date = expire_date
+        self.manufacture_date = datetime.datetime.now()
 
     def __str__(self):
         return f"time-credit metro card"
