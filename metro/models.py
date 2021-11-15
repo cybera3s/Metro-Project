@@ -152,7 +152,7 @@ class CreditCard(MetroCard):
         self.balance = balance
 
     def __str__(self):
-        return f"credit metro card - credit balance : {self.balance}"
+        return f"credit metro card (credit balance: {self.balance})"
 
 
 class TimeCredit(MetroCard):
