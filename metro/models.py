@@ -100,12 +100,12 @@ class Passenger:
 
     @classmethod
     def authenticate(cls, unique_id: int):
-
+        """authenticates a Passenger by unique_id"""
         cls.users = cls.load_data()
         users_id = list(map(lambda p: p.__unique_id, cls.users))
 
         if unique_id not in users_id:
-            raise AuthenticationError('Passenger', "Passenger Doesn't exist")
+            raise AuthenticationError('authentication', "wrong unique id, Passenger Doesn't exist")
 
         index = users_id.index(unique_id)  # index of items will not change after applying map function to the list
         return cls.users[index]
