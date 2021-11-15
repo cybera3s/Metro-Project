@@ -127,12 +127,14 @@ class BankAccount:
         self.__owner = owner
         self.__balance = initial_balance
 
-    def withdraw(self, amount):
-        """Subtracts the amount from the account balance
-         if balance minus the amount is not less than zero
-         otherwise raises Error"""
-        if (self.__balance - amount) <= 0:
+    def withdraw(self, amount: str):
+        """If the amount is valid and does not make the account balance less than zero,
+         it will be deducted from the account balance, otherwise it will return an error."""
+        if (self.__balance - int(amount)) <= 0:
             raise BankAccountError("withdraw", "NOT Enough balance to withdraw!")
+
+        if not amount.isdigit() or int(amount) < 0:
+            raise BankAccountError("withdraw", "withdraw amount must be a number and greater than zero!")
 
         self.__balance -= amount
         self.__owner.save_data()
