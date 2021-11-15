@@ -144,7 +144,7 @@ def card_menu(passenger):
                 destination = input("enter destination station: ")
 
                 trip = Trip(origin, destination)
-
+                trip.progress()
         elif option == "2":
 
             buy_cards_menu(passenger)
