@@ -2,7 +2,7 @@ import os
 import pickle
 import re
 from abc import ABC, abstractmethod
-from metro.exceptions import RegisterError, AuthenticationError, BankAccountError
+from metro.exceptions import RegisterError, AuthenticationError, BankAccountError, TripError
 from datetime import datetime, timedelta
 import time
 
@@ -187,11 +187,12 @@ class Trip:
 
     @staticmethod
     def __check_data(origin: str, destination: str):
-        if origin not in Trip.STATIONS or origin.lower() not in Trip.STATIONS:
-            pass
 
-        if destination not in Trip.STATIONS or destination.lower() not in Trip.STATIONS:
-            pass
+        if origin not in Trip.STATIONS:
+            raise TripError("origin", f"there is no '{origin}' station ")
+
+        if destination not in Trip.STATIONS:
+            raise TripError("destination", f"there is no '{destination}' station ")
 
     def duration(self):
         """get trip duration"""
