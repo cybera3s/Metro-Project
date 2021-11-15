@@ -109,6 +109,15 @@ class Passenger:
         index = users_id.index(unique_id)  # index of items will not change after applying map function to the list
         return cls.users[index]
 
+    @classmethod
+    def load_cards(cls):
+        if os.path.exists('cards/cards.pk'):
+            with open("cards/cards.pk", 'rb') as f:
+                cards = pickle.load(f)
+                ...
+        else:
+            return False
+
     def __str__(self):
         msg = f"""
         unique_id:{self.__unique_id}
