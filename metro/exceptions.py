@@ -30,3 +30,14 @@ class BankAccountError(Exception):
 
     def __str__(self):
         return f"Error due to `{self.reason}` >> {self.msg}"
+
+
+class TripError(Exception):
+
+    def __init__(self, reason, msg, *args) -> None:
+        super().__init__(reason, msg, *args)
+        self.reason = reason
+        self.msg = msg
+
+    def __str__(self):
+        return f"invalid `{self.reason}` >> {self.msg}"
