@@ -114,3 +114,6 @@ def manage_bank_account_menu(passenger):
         else:
 
             print("wrong option, try again")
+
+def card_menu():
+    pass
