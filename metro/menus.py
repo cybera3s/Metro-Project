@@ -32,7 +32,7 @@ def main_menu():
             unique_id = int(input("enter your unique id: "))
             try:
                 passenger = Passenger.authenticate(unique_id)
-
+                card_menu()
             except (AuthenticationError, BankAccountError) as e:
                 print(e)
 

@@ -1,39 +1,8 @@
 import os
 import pickle
 import re
-
+from abc import ABC, abstractmethod
 from metro.exceptions import RegisterError, AuthenticationError, BankAccountError
-
-
-class MetroCard:
-    """base metro card class"""
-
-    # todo: init >> balance >> expire >> price >> owner
-    # todo: method >> save to cards.pk
-    def __init__(self, price: int, owner, balance: int = 5000):
-        self.balance = balance
-        self.price = price
-        self.owner = owner
-
-
-class SingleTrip(MetroCard):
-    """Metro Single Trip card class"""
-    pass
-
-
-class CreditCard(MetroCard):
-    """Metro Credit Card class"""
-    pass
-
-
-class TimeCredit(MetroCard):
-    """Metro time credit card class"""
-    pass
-
-
-class Trip:
-    """Trip class"""
-    pass
 
 
 class Passenger:
@@ -127,6 +96,38 @@ class Passenger:
         Bank Account: {self.bank_account}
         """
         return msg
+
+
+class MetroCard(ABC):
+    """base metro card class"""
+
+    @abstractmethod
+    def __init__(self, price: int, owner: Passenger):
+        pass
+
+    @abstractmethod
+    def save_card(self):
+        pass
+
+
+class SingleTrip(MetroCard):
+    """Metro Single Trip card class"""
+    pass
+
+
+class CreditCard(MetroCard):
+    """Metro Credit Card class"""
+    pass
+
+
+class TimeCredit(MetroCard):
+    """Metro time credit card class"""
+    pass
+
+
+class Trip:
+    """Trip class"""
+    pass
 
 
 class BankAccount:
