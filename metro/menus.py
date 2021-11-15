@@ -1,5 +1,5 @@
 from models import Passenger
-from exceptions import RegisterError, AuthenticationError
+from exceptions import RegisterError, AuthenticationError, BankAccountError
 
 
 def main_menu():
@@ -76,13 +76,23 @@ def manage_bank_account_menu(passenger):
 
         if option == "1":
 
-            amount = int(input("enter your amount to deposit: "))
-            passenger.bank_account.deposit(amount)
+            amount = input("enter your amount to deposit: ")
+            try:
+
+                passenger.bank_account.deposit(amount)
+
+            except BankAccountError as e:
+                print(e)
 
         elif option == "2":
 
-            amount = input("enter your amount to deposit: ")
-            passenger.bank_account.withdraw(int(amount))
+            amount = input("enter your amount to withdraw: ")
+            try:
+
+                passenger.bank_account.withdraw(amount)
+
+            except BankAccountError as e:
+                print(e)
 
         elif option == "3":
 
