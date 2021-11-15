@@ -10,7 +10,7 @@ class RegisterError(Exception):
         return f"Error on field `{self.field}` (invalid data: `{self.data}`): {self.msg}"
 
 
-class LoginError(Exception):
+class AuthenticationError(Exception):
 
     def __init__(self, reason, msg, *args) -> None:
         super().__init__(reason, msg, *args)
