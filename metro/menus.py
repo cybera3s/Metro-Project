@@ -18,9 +18,8 @@ def main_menu():
             register_menu()
 
         elif option == "2":
-
-            authenticate()
-
+            unique_id = int(input("enter your unique id: "))
+            manage_bank_account_menu(authenticate(unique_id))
         elif option == "3":
 
             # todo: new trip
