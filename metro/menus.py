@@ -117,7 +117,6 @@ def manage_bank_account_menu(passenger):
 
 
 def card_menu(passenger):
-
     while True:
         print("1. list cards")
         print("2. buy new card")
@@ -144,13 +143,14 @@ def card_menu(passenger):
         else:
             print("wrong option, try again")
 
+
 def buy_cards_menu(passenger):
     """buy cards menu"""
     while True:
         print("1. buy Single Trip metro card for 1000")
-        print("2. buy credit metro card")
-        print("3. buy time-credit metro card")
-        print("4. back to main menu")
+        print("2. buy credit metro card for 2000")
+        print("3. buy time-credit metro card 3000")
+        print("4. back to cards menu")
 
         option = input("your option>>> ")
 
@@ -162,15 +162,19 @@ def buy_cards_menu(passenger):
 
         elif option == "2":
 
-            pass
+            card = CreditCard(passenger)
+            passenger.bank_account.withdraw(str(card.price))
+            card.save_card()
 
         elif option == "3":
 
-            pass
+            card = TimeCredit(passenger)
+            passenger.bank_account.withdraw(str(card.price))
+            card.save_card()
 
         elif option == "4":
 
-            main_menu()
+            card_menu(passenger)
 
         else:
 
