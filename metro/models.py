@@ -80,7 +80,7 @@ class Passenger:
 
     def register(self):
         """register a Passenger"""
-        Passenger.users = Passenger.__check_create_user_db()
+        Passenger.users = self.__check_create_user_db()
         Passenger.users.append(self)
         self.save_data()
         return self
