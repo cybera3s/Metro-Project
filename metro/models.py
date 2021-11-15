@@ -154,10 +154,16 @@ class CreditCard(MetroCard):
         return f"credit metro card"
 
 
-
 class TimeCredit(MetroCard):
     """Metro time credit card class"""
-    pass
+
+    def __init__(self, owner: Passenger, balance: int = 6000, price: int = 6000, expire_date: int = 5):
+        super().__init__(price, owner)
+        self.balance = balance
+        self.expire_date = expire_date
+
+    def __str__(self):
+        return f"time-credit metro card"
 
 
 class Trip:
