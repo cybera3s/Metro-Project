@@ -180,7 +180,12 @@ class Trip:
         self.destination = destination
 
         self.start_time = datetime.now()
+        self.end_time = self.start_time + timedelta(seconds=self.duration())
 
+    def duration(self):
+        """get trip duration"""
+        distance = abs(Trip.STATIONS.index(self.destination) - Trip.STATIONS.index(self.origin))
+        return distance * 5   # The time to reach each station is 5 seconds
 
 
 class BankAccount:
