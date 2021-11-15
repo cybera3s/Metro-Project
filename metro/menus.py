@@ -179,3 +179,4 @@ def buy_cards_menu(passenger):
         else:
 
             print("wrong option, try again")
+
