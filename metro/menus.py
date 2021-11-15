@@ -21,7 +21,7 @@ def main_menu():
 
             unique_id = int(input("enter your unique id: "))
             manage_bank_account_menu(authenticate(unique_id))
-            
+
         elif option == "3":
 
             # todo: new trip
@@ -81,7 +81,8 @@ def manage_bank_account_menu(passenger):
 
         elif option == "2":
 
-            pass
+            amount = input("enter your amount to deposit: ")
+            passenger.bank_account.withdraw(int(amount))
 
         elif option == "3":
 
