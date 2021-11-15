@@ -117,12 +117,32 @@ def manage_bank_account_menu(passenger):
 
 
 def card_menu(passenger):
-    if not passenger.list_cards(passenger):
-        print("you have to buy cards first, there is no cards !!")
-        buy_cards_menu(passenger)
-    else:
-        print(passenger.list_cards(passenger))
 
+    while True:
+        print("1. list cards")
+        print("2. buy new card")
+        print("3. back to main menu")
+
+        option = input(">>> ")
+
+        if option == "1":
+
+            if not passenger.list_cards():
+                print("there is no card for select, buy first")
+            else:
+                for i, c in enumerate(passenger.list_cards(), 1):
+                    print(f"{i} : {c}")
+
+        elif option == "2":
+
+            buy_cards_menu(passenger)
+
+        elif option == "3":
+
+            main_menu()
+
+        else:
+            print("wrong option, try again")
 
 def buy_cards_menu(passenger):
     """buy cards menu"""
