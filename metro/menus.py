@@ -32,7 +32,7 @@ def main_menu():
             unique_id = int(input("enter your unique id: "))
             try:
                 passenger = Passenger.authenticate(unique_id)
-                card_menu()
+                card_menu(passenger)
             except (AuthenticationError, BankAccountError) as e:
                 print(e)
 
@@ -116,8 +116,8 @@ def manage_bank_account_menu(passenger):
             print("wrong option, try again")
 
 
-def card_menu():
-    if not Passenger.load_cards():
+def card_menu(passenger):
+    if not passenger.load_cards():
         print("you have to buy cards first, there is no cards !!")
     else:
         pass
