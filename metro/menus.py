@@ -134,10 +134,17 @@ def card_menu(passenger):
                 for i, c in enumerate(my_cards, 1):
                     print(f"{i}: {c}")
 
-                card = input("select your card: ")
-                selected = my_cards[int(card)-1]
+                try:
 
-                print(selected, " selected")
+                    card = input("select your card: ")
+                    selected = my_cards[int(card) - 1]
+                    print(selected, "selected")
+
+                except (IndexError, TypeError):
+
+                    print("invalid option, try again")
+                    card_menu(passenger)
+
                 print(Trip.get_stations())
 
                 origin = input("enter origin station: ")
@@ -151,7 +158,6 @@ def card_menu(passenger):
 
                 except TripError as e:
                     print(e)
-
 
         elif option == "2":
 
