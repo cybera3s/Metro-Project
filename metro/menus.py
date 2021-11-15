@@ -1,5 +1,5 @@
 from models import Passenger
-from exceptions import RegisterError, LoginError
+from exceptions import RegisterError, AuthenticationError
 
 
 def main_menu():
@@ -54,7 +54,7 @@ def register_menu():
 
 
 def authenticate():
-    """login menu passenger"""
+    """authenticate a passenger by unique_id"""
     unique_id = int(input("enter your unique id: "))
     try:
         passenger = Passenger.authenticate(unique_id)
