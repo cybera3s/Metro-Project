@@ -106,12 +106,23 @@ class MetroCard(ABC):
     def __init__(self, price: int, owner: Passenger):
         pass
 
+    def load_cards(self):
+        """load list cards"""
+        if os.path.exists('cards/cards.pk'):
+            with open("cards/cards.pk", "rb") as f:
+                cards = pickle.load(f)
+        else:
+            cards = []
+
+        return cards
+
     def save_card(self):
         """save cards list to file"""
-        MetroCard.cards.append(self)
+        MetroCard.cards = self.load_cards()
 
         with open("cards/cards.pk", "wb") as f:
             pickle.dump(MetroCard.cards, f)
+
 
 class SingleTrip(MetroCard):
     """Metro Single Trip card class"""
