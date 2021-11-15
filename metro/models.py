@@ -106,9 +106,9 @@ class MetroCard(ABC):
     """base metro card class"""
     cards = None
 
-    @abstractmethod
     def __init__(self, price: int, owner: Passenger):
-        pass
+        self.price = price
+        self.owner = owner
 
     def load_cards(self):
         """load list cards"""
