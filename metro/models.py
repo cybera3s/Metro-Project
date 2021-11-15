@@ -79,11 +79,11 @@ class Passenger:
         return cls.users[index]
 
     @classmethod
-    def list_cards(cls, user):
+    def list_cards(cls, unique_id):
         if os.path.exists('cards/cards.pk'):
             with open("cards/cards.pk", 'rb') as f:
                 cards = pickle.load(f)
-                my_cards = list(filter(lambda c: id(c.owner) == id(user), cards))
+                my_cards = list(filter(lambda c: c.owner.__unique_id == unique_id, cards))
                 return my_cards
         else:
             return False

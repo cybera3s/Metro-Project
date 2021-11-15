@@ -127,7 +127,7 @@ def card_menu(passenger):
 def buy_cards_menu(passenger):
     """buy cards menu"""
     while True:
-        print("1. buy Single Trip metro card")
+        print("1. buy Single Trip metro card for 1000")
         print("2. buy credit metro card")
         print("3. buy time-credit metro card")
         print("4. back to main menu")
@@ -137,6 +137,7 @@ def buy_cards_menu(passenger):
         if option == "1":
 
             card = SingleTrip(passenger)
+            passenger.bank_account.withdraw(str(card.price))
             card.save_card()
 
         elif option == "2":
