@@ -33,7 +33,7 @@ def main_menu():
         elif option == "5":
 
             # todo: exit
-            break
+            exit()
 
         else:
             print("wrong option, try again")
@@ -73,12 +73,22 @@ def manage_bank_account_menu(passenger):
         option = input("enter your option: ")
 
         if option == "1":
-            pass
+
+            amount = int(input("enter your amount to deposit: "))
+            passenger.bank_account.deposit(amount)
+
         elif option == "2":
+
             pass
+
         elif option == "3":
-            pass
+
+            print(passenger.bank_account.get_balance())
+
         elif option == "4":
+
             main_menu()
+
         else:
+
             print("wrong option, try again")
