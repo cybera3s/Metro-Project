@@ -49,8 +49,6 @@ class Passenger:
         self.phone = phone
         self.email = email
         # todo : empty list of metro cards
-        Passenger.users = Passenger.__check_create_user_db()
-        Passenger.users.append(self)
 
     @classmethod
     def __check_create_user_db(cls):
@@ -82,9 +80,9 @@ class Passenger:
 
     def register(self):
         """save Passenger obj to users.pk file"""
-
-        with open("users/users.pk", "wb") as f:
-            pickle.dump(Passenger.users, f)
+        Passenger.users = Passenger.__check_create_user_db()
+        Passenger.users.append(self)
+        self.save_data()
         return self
 
     @classmethod
