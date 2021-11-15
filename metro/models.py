@@ -138,6 +138,7 @@ class BankAccount:
 
     def deposit(self, amount):
         self.__balance += amount
+        self.__owner.save_data()
 
     def get_balance(self):
         return self.__balance
