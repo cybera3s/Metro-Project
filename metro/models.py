@@ -137,8 +137,7 @@ class SingleTrip(MetroCard):
     """Metro Single Trip card class"""
 
     def __init__(self, owner: Passenger, price: int = 1000):
-        self.price = price
-        self.owner = owner
+        super().__init__(price, owner)
 
     def __str__(self):
         return f"Single trip metro Card"
