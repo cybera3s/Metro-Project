@@ -125,6 +125,9 @@ class MetroCard(ABC):
         with open("cards/cards.pk", "wb") as f:
             pickle.dump(MetroCard.cards, f)
 
+    @abstractmethod
+    def __str__(self):
+        pass
 
 class SingleTrip(MetroCard):
     """Metro Single Trip card class"""
