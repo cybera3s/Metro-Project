@@ -121,3 +121,34 @@ def card_menu():
         print("you have to buy cards first, there is no cards !!")
     else:
         pass
+
+
+def buy_cards_menu():
+    """buy cards menu"""
+    while True:
+        print("1. buy Single Trip metro card")
+        print("2. buy credit metro card")
+        print("3. buy time-credit metro card")
+        print("4. back to main menu")
+
+        option = input("your option>>> ")
+
+        if option == "1":
+
+            pass
+
+        elif option == "2":
+
+            pass
+
+        elif option == "3"
+
+            pass
+
+        elif option == "4":
+
+            main_menu()
+
+        else:
+
+            print("wrong option, try again")
