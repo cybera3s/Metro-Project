@@ -157,6 +157,7 @@ class CreditCard(MetroCard):
         if (self.balance - price) <= 0:
             raise MetroCardError("balance", "not enough balance!")
         self.balance -= price
+        self.save_card()
 
 
     def __str__(self):
@@ -179,6 +180,7 @@ class TimeCredit(MetroCard):
             if (self.balance - price) <= 0:
                 raise MetroCardError("balance", "not enough balance!")
             self.balance -= price
+            self.save_card()
         else:
             raise MetroCardError("expire_date", "the card is expired!")
 
