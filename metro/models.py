@@ -127,7 +127,16 @@ class MetroCard(ABC):
     def save_card(self):
         """save cards list to file"""
         MetroCard.cards = self.load_cards()
-        MetroCard.cards.append(self)
+        cards_serial_number = list(map(lambda c: c.serial_number, MetroCard.cards))
+
+        if self.serial_number in cards_serial_number:  # checks if card is already exists then changes it
+
+            index = cards_serial_number.index(self.serial_number)
+            MetroCard.cards[index] = self
+
+        else:
+
+            MetroCard.cards.append(self)
 
         with open("cards/cards.pk", "wb") as f:
             pickle.dump(MetroCard.cards, f)
