@@ -152,6 +152,13 @@ class CreditCard(MetroCard):
         super().__init__(price, owner)
         self.balance = balance
 
+    def check_status(self, price):
+
+        if (self.balance - price) <= 0:
+            raise MetroCardError("balance", "not enough balance!")
+        self.balance -= price
+
+
     def __str__(self):
         return f"credit metro card (credit balance: {self.balance})"
 
@@ -174,7 +181,6 @@ class TimeCredit(MetroCard):
             self.balance -= price
         else:
             raise MetroCardError("expire_date", "the card is expired!")
-
 
     def __str__(self):
         return f"time-credit metro card (credit balance: {self.balance} ,remaining time:{self.remaining_time.days}days)"
