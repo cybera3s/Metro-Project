@@ -118,7 +118,7 @@ def manage_bank_account_menu(passenger):
 
 def card_menu(passenger):
     while True:
-        print("1. list cards for register new trip")
+        print("1. register new trip")
         print("2. buy new card")
         print("3. back to main menu")
 
