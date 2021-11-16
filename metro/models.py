@@ -132,7 +132,11 @@ class MetroCard(ABC):
         if self.serial_number in cards_serial_number:  # checks if card is already exists then changes it
 
             index = cards_serial_number.index(self.serial_number)
-            MetroCard.cards[index] = self
+
+            if isinstance(self, SingleTrip):
+                MetroCard.cards.pop(index)
+            else:
+                MetroCard.cards[index] = self
 
         else:
 
@@ -151,6 +155,9 @@ class SingleTrip(MetroCard):
 
     def __init__(self, owner: Passenger, price: int = 1000):
         super().__init__(price, owner)
+
+    def use_card(self):
+        self.save_card()
 
     def __str__(self):
         return f"Single trip metro Card"
