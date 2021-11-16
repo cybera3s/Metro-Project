@@ -1,5 +1,5 @@
 from models import Passenger, SingleTrip, CreditCard, TimeCredit, Trip
-from metro.exceptions import RegisterError, BankAccountError, AuthenticationError, TripError
+from metro.exceptions import RegisterError, BankAccountError, AuthenticationError, TripError, MetroCardError
 
 
 def main_menu():
@@ -140,9 +140,16 @@ def card_menu(passenger):
                     selected = my_cards[int(card) - 1]
                     print(selected, "selected")
 
+                    if isinstance(selected, (CreditCard, TimeCredit)):
+                        selected.check_status(Trip.PRICE)
+
                 except (IndexError, TypeError):
 
                     print("invalid option, try again")
+                    card_menu(passenger)
+
+                except MetroCardError as e:
+                    print(e)
                     card_menu(passenger)
 
                 print(Trip.get_stations())
