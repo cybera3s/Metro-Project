@@ -161,7 +161,7 @@ def register_trip(passenger):
                 raise IndexError("index must be more than zero")
 
             selected = my_cards[int(card) - 1]
-            print(selected, "selected", id(selected))
+            print(selected, "selected")
 
             if isinstance(selected, (CreditCard, TimeCredit)):
                 selected.use_card(Trip.PRICE)
