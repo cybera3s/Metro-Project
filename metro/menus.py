@@ -144,7 +144,7 @@ def card_menu(passenger):
                     print(selected, "selected")
 
                     if isinstance(selected, (CreditCard, TimeCredit)):
-                        selected.check_status(Trip.PRICE)
+                        selected.use_card(Trip.PRICE)
 
                 except (IndexError, TypeError):
 
