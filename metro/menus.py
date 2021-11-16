@@ -150,6 +150,7 @@ def register_trip(passenger):
 
         my_cards = passenger.list_cards()
 
+        print("Cards List")
         for i, c in enumerate(my_cards, 1):
             print(f"{i}: {c}")
 
