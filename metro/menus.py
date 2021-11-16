@@ -137,6 +137,9 @@ def card_menu(passenger):
                 try:
 
                     card = input("select your card: ")
+                    if int(card) <= 0:
+                        raise IndexError("index must be more than zero")
+
                     selected = my_cards[int(card) - 1]
                     print(selected, "selected")
 
