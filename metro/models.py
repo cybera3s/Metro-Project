@@ -167,6 +167,15 @@ class TimeCredit(MetroCard):
         self.expire_date = datetime.now() + timedelta(days=TimeCredit.DURABILITY)
         self.remaining_time = self.expire_date - self.manufacture_date
 
+    def check_status(self, price):
+        if self.expire_date != datetime.now():
+            if (self.balance - price) <= 0:
+                pass
+            self.balance -= price
+        else:
+            pass
+
+
     def __str__(self):
         return f"time-credit metro card (credit balance: {self.balance} ,remaining time:{self.remaining_time.days}days)"
 
