@@ -2,7 +2,7 @@ import os
 import pickle
 import re
 from abc import ABC, abstractmethod
-from metro.exceptions import RegisterError, AuthenticationError, BankAccountError, TripError
+from metro.exceptions import RegisterError, AuthenticationError, BankAccountError, TripError, MetroCardError
 from datetime import datetime, timedelta
 import time
 
@@ -170,10 +170,10 @@ class TimeCredit(MetroCard):
     def check_status(self, price):
         if self.expire_date != datetime.now():
             if (self.balance - price) <= 0:
-                pass
+                raise MetroCardError("balance", "not enough balance!")
             self.balance -= price
         else:
-            pass
+            raise MetroCardError("expire_date", "the card is expired!")
 
 
     def __str__(self):
