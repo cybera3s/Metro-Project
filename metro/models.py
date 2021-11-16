@@ -113,7 +113,8 @@ class MetroCard(ABC):
         self.owner = owner
         self.serial_number = int(str(id(self))[4:])
 
-    def load_cards(self):
+    @staticmethod
+    def load_cards():
         """load list cards"""
         if os.path.exists('cards/cards.pk'):
             with open("cards/cards.pk", "rb") as f:
