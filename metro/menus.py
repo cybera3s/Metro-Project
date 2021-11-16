@@ -7,7 +7,7 @@ def main_menu():
     while True:
         print("1. register new Passenger")
         print("2. manage bank account")
-        print("3. register new trip")
+        print("3. trip management")
         print("4. admin panel")
         print("5. exit")
 
@@ -32,7 +32,7 @@ def main_menu():
             unique_id = int(input("enter your unique id: "))
             try:
                 passenger = Passenger.authenticate(unique_id)
-                card_menu(passenger)
+                trip_management_menu(passenger)
             except (AuthenticationError, BankAccountError) as e:
                 print(e)
 
@@ -116,7 +116,7 @@ def manage_bank_account_menu(passenger):
             print("wrong option, try again")
 
 
-def card_menu(passenger):
+def trip_management_menu(passenger):
     while True:
         print("1. register new trip")
         print("2. buy new card")
