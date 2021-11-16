@@ -26,15 +26,19 @@ def main_menu():
 
             except (AuthenticationError, BankAccountError) as e:
                 print(e)
+            except Exception as e:
+                print(e)
 
         elif option == "3":
 
-            unique_id = int(input("enter your unique id: "))
+            unique_id = input("enter your unique id: ")
             try:
-                passenger = Passenger.authenticate(unique_id)
+                passenger = Passenger.authenticate(int(unique_id))
                 trip_management_menu(passenger)
             except (AuthenticationError, BankAccountError) as e:
                 print(e)
+            except Exception as e:
+                print("\n",e)
 
         elif option == "4":
 
@@ -157,13 +161,15 @@ def register_trip(passenger):
         try:
 
             card = input("select your card: ")
-            if int(card) <= 0:
+            if int(card) < 0:
                 raise IndexError("index must be more than zero")
 
             selected = my_cards[int(card) - 1]
             print(selected, "selected")
 
-            if isinstance(selected, (CreditCard, TimeCredit)):
+            if isinstance(selected, SingleTrip):
+                selected.use_card()
+            else:
                 selected.use_card(Trip.PRICE)
 
         except (IndexError, TypeError):
