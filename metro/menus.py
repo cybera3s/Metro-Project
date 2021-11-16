@@ -149,11 +149,11 @@ def trip_management_menu(passenger):
                 except (IndexError, TypeError):
 
                     print("invalid option, try again")
-                    card_menu(passenger)
+                    trip_management_menu(passenger)
 
                 except MetroCardError as e:
                     print(e)
-                    card_menu(passenger)
+                    trip_management_menu(passenger)
 
                 print(Trip.get_stations())
 
@@ -211,7 +211,7 @@ def buy_cards_menu(passenger):
 
         elif option == "4":
 
-            card_menu(passenger)
+            trip_management_menu(passenger)
 
         else:
 
