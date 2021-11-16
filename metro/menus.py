@@ -126,48 +126,7 @@ def trip_management_menu(passenger):
 
         if option == "1":
 
-            if not passenger.list_cards():
-                print("There is no card to show, Buy first")
-            else:
-                my_cards = passenger.list_cards()
-
-                for i, c in enumerate(my_cards, 1):
-                    print(f"{i}: {c}")
-
-                try:
-
-                    card = input("select your card: ")
-                    if int(card) <= 0:
-                        raise IndexError("index must be more than zero")
-
-                    selected = my_cards[int(card) - 1]
-                    print(selected, "selected")
-
-                    if isinstance(selected, (CreditCard, TimeCredit)):
-                        selected.use_card(Trip.PRICE)
-
-                except (IndexError, TypeError):
-
-                    print("invalid option, try again")
-                    trip_management_menu(passenger)
-
-                except MetroCardError as e:
-                    print(e)
-                    trip_management_menu(passenger)
-
-                print(Trip.get_stations())
-
-                origin = input("enter origin station: ")
-                destination = input("enter destination station: ")
-
-                try:
-
-                    trip = Trip(origin, destination)
-                    print(trip)
-                    trip.progress()
-
-                except TripError as e:
-                    print(e)
+            register_trip(passenger)
 
         elif option == "2":
 
@@ -179,6 +138,55 @@ def trip_management_menu(passenger):
 
         else:
             print("wrong option, try again")
+
+
+def register_trip(passenger):
+    # if passenger has no cards
+    if not passenger.list_cards():
+
+        print("There is no card to show, Buy first")
+
+    else:
+
+        my_cards = passenger.list_cards()
+
+        for i, c in enumerate(my_cards, 1):
+            print(f"{i}: {c}")
+
+        try:
+
+            card = input("select your card: ")
+            if int(card) <= 0:
+                raise IndexError("index must be more than zero")
+
+            selected = my_cards[int(card) - 1]
+            print(selected, "selected", id(selected))
+
+            if isinstance(selected, (CreditCard, TimeCredit)):
+                selected.use_card(Trip.PRICE)
+
+        except (IndexError, TypeError):
+
+            print("invalid option, try again")
+            trip_management_menu(passenger)
+
+        except MetroCardError as e:
+            print(e)
+            trip_management_menu(passenger)
+
+        print(Trip.get_stations())
+
+        origin = input("enter origin station: ")
+        destination = input("enter destination station: ")
+
+        try:
+
+            trip = Trip(origin, destination)
+            print(trip)
+            trip.progress()
+
+        except TripError as e:
+            print(e)
 
 
 def buy_cards_menu(passenger):
