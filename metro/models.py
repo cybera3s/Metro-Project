@@ -111,6 +111,7 @@ class MetroCard(ABC):
     def __init__(self, price: int, owner: Passenger):
         self.price = price
         self.owner = owner
+        self.serial_number = int(str(id(self))[4:])
 
     def load_cards(self):
         """load list cards"""
