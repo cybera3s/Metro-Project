@@ -1,17 +1,12 @@
 from models import Passenger, SingleTrip, CreditCard, TimeCredit, Trip
 from metro.exceptions import RegisterError, BankAccountError, AuthenticationError, TripError, MetroCardError
-from metro.utils import clear_screen
+from metro.utils import clear_screen, main_menu_options
 
 def main_menu():
     """main menu function"""
     while True:
         # clear_screen()
-        print("_____________________ MAIN MENU _____________________\n")
-        print("\t1. register new Passenger")
-        print("\t2. manage bank account")
-        print("\t3. trip management")
-        print("\t4. admin panel")
-        print("\t5. exit")
+        main_menu_options()
 
         option = input("\nyour option >>> ")
 
