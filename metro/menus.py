@@ -2,6 +2,7 @@ from models import Passenger, SingleTrip, CreditCard, TimeCredit, Trip
 from metro.exceptions import RegisterError, BankAccountError, AuthenticationError, TripError, MetroCardError
 from metro.utils import clear_screen, main_menu_options
 
+
 def main_menu():
     """main menu function"""
     while True:
@@ -36,7 +37,7 @@ def main_menu():
             except (AuthenticationError, BankAccountError) as e:
                 print(e)
             except Exception as e:
-                print("\n",e)
+                print("\n", e)
 
         elif option == "4":
 
@@ -54,13 +55,14 @@ def main_menu():
             print("wrong option, try again\n")
             input("Press any key to continue...")
 
+
 def register_menu():
     """register new Passenger"""
     print("_____________________REGISTER MENU_____________________\n")
 
-    fullname = input("\tenter your fullname : ")
-    phone_number = input("\tenter your phone number : ")
-    email = input("\tenter your email(optional): ")
+    fullname = input("enter your fullname (e.g : Harry Potter) : ")
+    phone_number = input("enter your phone number : ")
+    email = input("enter your email (optional): ")
 
     try:
         passenger = Passenger(fullname, phone_number, email)
@@ -163,7 +165,7 @@ def register_trip(passenger):
         try:
 
             card = input("select your card: ")
-            #todo: fix it
+            # todo: fix it
             if int(card) < 0:
                 raise IndexError("index must be more than zero")
 
