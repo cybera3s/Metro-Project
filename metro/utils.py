@@ -33,10 +33,21 @@ def manage_bank_account_menu_options():
 
 
 def trip_management_menu_options():
+    """prints trip management menu options optioans"""
     print("_____________________ TRIP MANAGEMENT MENU _____________________\n")
     print("\t1. register new trip")
     print("\t2. buy new card")
     print("\t3. back to main menu")
+
+
+def buy_cards_menu_options():
+    """prints buy cards menu options optioans"""
+
+    print("_____________________ BUY CARDS MENU _____________________\n")
+    print("\t1.buy Single Trip metro card for 1000")
+    print("\t2.buy credit metro card for 5000")
+    print("\t3.buy time-credit metro card 6000")
+    print("\t4.back to cards menu")
 
 
 def any_key():
