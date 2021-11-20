@@ -196,6 +196,8 @@ def trip_management_menu(passenger):
 
 
 def register_trip(passenger):
+    """register trip section"""
+
     # if passenger has no cards
     if not passenger.list_cards():
 
@@ -211,18 +213,21 @@ def register_trip(passenger):
 
         try:
 
-            card = input("select your card: ")
-            # todo: fix it
-            if int(card) < 0:
-                raise IndexError("index must be more than zero")
+            card = int(input("select your desired card: "))
 
-            selected = my_cards[int(card) - 1]
-            print(selected, "selected")
+            if card <= 0 or my_cards[card-1] not in my_cards:
+                raise IndexError()
 
-            if isinstance(selected, SingleTrip):
-                selected.use_card()
+            selected_card = my_cards[int(card) - 1]
+            print(selected_card, "selected")
+
+            if isinstance(selected_card, SingleTrip):
+
+                selected_card.use_card()
+
             else:
-                selected.use_card(Trip.PRICE)
+
+                selected_card.use_card(Trip.PRICE)
 
         except (IndexError, TypeError):
 
