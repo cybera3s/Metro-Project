@@ -1,6 +1,6 @@
 from models import Passenger, SingleTrip, CreditCard, TimeCredit, Trip
 from metro.exceptions import RegisterError, BankAccountError, AuthenticationError, TripError, MetroCardError
-from metro.utils import clear_screen, main_menu_options
+from metro.utils import clear_screen, main_menu_options, any_key
 
 
 def main_menu():
@@ -65,11 +65,17 @@ def register_menu():
     email = input("enter your email (optional): ")
 
     try:
+
         passenger = Passenger(fullname, phone_number, email)
         print(passenger.register())
-    except RegisterError as e:
-        print(e)
 
+        print("\nsuccessfully registered !")
+        any_key()
+
+    except RegisterError as e:
+        clear_screen()
+        print(e)
+        any_key()
 
 def authenticate(unique_id):
     """authenticate a passenger by unique_id"""
