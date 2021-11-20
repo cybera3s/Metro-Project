@@ -101,7 +101,7 @@ class Passenger:
         fullname:{self.fullname}
         phone:{self.phone}
         email:{self.email}
-        Bank Account: {self.bank_account}
+        Bank Account: \n{self.bank_account}
         """
         return msg
 
