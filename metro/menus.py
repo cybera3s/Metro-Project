@@ -202,7 +202,9 @@ def trip_management_menu(passenger):
 
         else:
 
+            clear_screen()
             print("wrong option, try again")
+            any_key()
 
 
 def register_trip(passenger):
@@ -311,4 +313,6 @@ def buy_cards_menu(passenger):
 
         else:
 
+            clear_screen()
             print("wrong option, try again")
+            any_key()
