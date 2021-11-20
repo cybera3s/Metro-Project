@@ -182,7 +182,7 @@ class CreditCard(MetroCard):
         self.save_card()
 
     def __str__(self):
-        return f"credit metro card (credit balance: {self.balance})"
+        return f"credit card (balance: {self.balance})"
 
 
 class TimeCredit(MetroCard):
