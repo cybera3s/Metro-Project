@@ -1,7 +1,7 @@
 from models import Passenger, SingleTrip, CreditCard, TimeCredit, Trip
 from metro.exceptions import RegisterError, BankAccountError, AuthenticationError, TripError, MetroCardError
 from metro.utils import clear_screen, main_menu_options, any_key, manage_bank_account_menu_options, \
-    trip_management_menu_options
+    trip_management_menu_options, buy_cards_menu_options
 
 
 def main_menu():
@@ -216,7 +216,7 @@ def register_trip(passenger):
 
             card = int(input("select your desired card: "))
 
-            if card <= 0 or my_cards[card-1] not in my_cards:
+            if card <= 0 or my_cards[card - 1] not in my_cards:
                 raise IndexError()
 
             selected_card = my_cards[int(card) - 1]
@@ -257,31 +257,33 @@ def register_trip(passenger):
 def buy_cards_menu(passenger):
     """buy cards menu"""
     while True:
-        print("1.buy Single Trip metro card for 1000")
-        print("2.buy credit metro card for 5000")
-        print("3.buy time-credit metro card 6000")
-        print("4.back to cards menu")
 
+        clear_screen()
+        buy_cards_menu_options()
         option = input(">>> ")
 
+        # buy Single Trip metro card for 1000
         if option == "1":
 
             card = SingleTrip(passenger)
             passenger.bank_account.withdraw(str(card.price))
             card.save_card()
 
+        # buy credit metro card for 5000
         elif option == "2":
 
             card = CreditCard(passenger)
             passenger.bank_account.withdraw(str(card.price))
             card.save_card()
 
+        # buy time-credit metro card 6000
         elif option == "3":
 
             card = TimeCredit(passenger)
             passenger.bank_account.withdraw(str(card.price))
             card.save_card()
 
+        # back to cards menu
         elif option == "4":
 
             trip_management_menu(passenger)
