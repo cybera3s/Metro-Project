@@ -31,4 +31,4 @@ def manage_bank_account_menu_options():
     print("\t4. Back to main menu")
 
 def any_key():
-    key = input("press any key to continue...")
+    key = input("\npress any key to continue...")
