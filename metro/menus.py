@@ -203,7 +203,7 @@ def register_trip(passenger):
     if not passenger.list_cards():
 
         print("There is no card to show, Buy first")
-
+        any_key()
     else:
 
         my_cards = passenger.list_cards()
