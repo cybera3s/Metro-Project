@@ -11,48 +11,44 @@ def main_menu():
 
         option = input("\nyour option >>> ")
 
+        # register new Passenger
         if option == "1":
 
             clear_screen()
             register_menu()
 
+        # manage bank account
         elif option == "2":
+
+            clear_screen()
+            passenger = authenticate()
+            manage_bank_account_menu(passenger)
+
+        # trip management
+        elif option == "3":
 
             clear_screen()
             passenger = authenticate()
 
             try:
 
-                manage_bank_account_menu(passenger)
+                trip_management_menu(passenger)
 
             except BankAccountError as e:
 
-                clear_screen()
                 print(e)
-                any_key()
 
             except Exception as e:
 
-                clear_screen()
-                print(e)
-                any_key()
-
-        elif option == "3":
-
-            unique_id = input("enter your unique id: ")
-            try:
-                passenger = Passenger.authenticate(int(unique_id))
-                trip_management_menu(passenger)
-            except (AuthenticationError, BankAccountError) as e:
-                print(e)
-            except Exception as e:
                 print("\n", e)
 
+        # admin panel
         elif option == "4":
 
             # todo: admin panel section
             pass
 
+        # exit
         elif option == "5":
 
             clear_screen()
@@ -169,6 +165,7 @@ def manage_bank_account_menu(passenger):
 
 
 def trip_management_menu(passenger):
+
     while True:
         print("1. register new trip")
         print("2. buy new card")
