@@ -1,7 +1,7 @@
 from models import Passenger, SingleTrip, CreditCard, TimeCredit, Trip
 from metro.exceptions import RegisterError, BankAccountError, AuthenticationError, TripError, MetroCardError
 from metro.utils import clear_screen, main_menu_options, any_key, manage_bank_account_menu_options, \
-    trip_management_menu_options, buy_cards_menu_options
+    trip_management_menu_options, buy_cards_menu_options, wrong_option
 
 
 def main_menu():
@@ -57,9 +57,8 @@ def main_menu():
             exit()
 
         else:
-            clear_screen()
-            print("wrong option, try again\n")
-            input("Press any key to continue...")
+
+            wrong_option()
 
 
 def register_menu():
@@ -162,7 +161,7 @@ def manage_bank_account_menu(passenger):
 
         else:
 
-            print("wrong option, try again")
+            wrong_option()
 
 
 def trip_management_menu(passenger):
@@ -202,9 +201,7 @@ def trip_management_menu(passenger):
 
         else:
 
-            clear_screen()
-            print("wrong option, try again")
-            any_key()
+            wrong_option()
 
 
 def register_trip(passenger):
@@ -313,6 +310,4 @@ def buy_cards_menu(passenger):
 
         else:
 
-            clear_screen()
-            print("wrong option, try again")
-            any_key()
+            wrong_option()
