@@ -1,6 +1,6 @@
 from models import Passenger, SingleTrip, CreditCard, TimeCredit, Trip
 from metro.exceptions import RegisterError, BankAccountError, AuthenticationError, TripError, MetroCardError
-from metro.utils import clear_screen, main_menu_options, any_key
+from metro.utils import clear_screen, main_menu_options, any_key,manage_bank_account_menu_options
 
 
 def main_menu():
@@ -114,12 +114,10 @@ def authenticate():
 def manage_bank_account_menu(passenger):
     """management panel for bank account"""
     while True:
-        print("1. deposit")
-        print("2. withdraw")
-        print("3. show account balance")
-        print("4. Back to main menu")
+        manage_bank_account_menu_options()
 
-        option = input("enter your option: ")
+        owner = passenger.bank_account.owner.fullname
+        option = input(f"\n({owner}\'s account) >>> ")
 
         if option == "1":
 
