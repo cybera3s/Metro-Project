@@ -5,13 +5,15 @@ from metro.utils import clear_screen
 def main_menu():
     """main menu function"""
     while True:
-        print("1. register new Passenger")
-        print("2. manage bank account")
-        print("3. trip management")
-        print("4. admin panel")
-        print("5. exit")
+        # clear_screen()
+        print("_____________________ MAIN MENU _____________________\n")
+        print("\t1. register new Passenger")
+        print("\t2. manage bank account")
+        print("\t3. trip management")
+        print("\t4. admin panel")
+        print("\t5. exit")
 
-        option = input(">>> ")
+        option = input("\nyour option >>> ")
 
         if option == "1":
 
@@ -19,7 +21,7 @@ def main_menu():
             register_menu()
 
         elif option == "2":
-
+            clear_screen()
             unique_id = int(input("enter your unique id: "))
             try:
                 passenger = Passenger.authenticate(unique_id)
@@ -48,12 +50,14 @@ def main_menu():
 
         elif option == "5":
 
-            # todo: exit
+            clear_screen()
+            print("Good Bye!")
             exit()
 
         else:
-            print("wrong option, try again")
-
+            clear_screen()
+            print("wrong option, try again\n")
+            input("Press any key to continue...")
 
 def register_menu():
     """register new Passenger"""
