@@ -265,7 +265,7 @@ class BankAccount:
     """Bank Account for every Passenger"""
 
     def __init__(self, owner: Passenger, initial_balance: int = 0) -> None:
-        self.__owner = owner
+        self.owner = owner
         self.__balance = initial_balance
 
     def withdraw(self, amount: str):
@@ -279,7 +279,7 @@ class BankAccount:
             raise BankAccountError("withdraw", "withdraw amount must be a number and greater than zero!")
 
         self.__balance -= int(amount)
-        self.__owner.save_data()
+        self.owner.save_data()
 
     def deposit(self, amount: str):
         """If the input amount is valid, adds
@@ -290,11 +290,11 @@ class BankAccount:
             raise BankAccountError("deposit", "deposit amount must be a number and greater than zero!")
 
         self.__balance += int(amount)
-        self.__owner.save_data()
+        self.owner.save_data()
 
     def get_balance(self):
         return self.__balance
 
     def __str__(self):
-        msg = f"""\towner: {self.__owner.fullname}\n\tbalance: {self.__balance}"""
+        msg = f"""\towner: {self.owner.fullname}\n\tbalance: {self.__balance}"""
         return msg
