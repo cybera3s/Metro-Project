@@ -22,6 +22,13 @@ def main_menu_options():
     print("\t4. admin panel")
     print("\t5. exit")
 
+def manage_bank_account_menu_options():
+    """prints bank account menu optioans"""
+    print("_____________________ BANK ACCOUNT MANAGEMENT _____________________\n")
+    print("\t1. deposit")
+    print("\t2. withdraw")
+    print("\t3. show account balance")
+    print("\t4. Back to main menu")
 
 def any_key():
     key = input("press any key to continue...")
