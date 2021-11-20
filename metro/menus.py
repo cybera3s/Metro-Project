@@ -89,7 +89,7 @@ def authenticate():
     try:
 
         unique_id = int(input("enter your unique id: "))
-        passenger = Passenger.authenticate(int(unique_id))
+        passenger = Passenger.authenticate(unique_id)
         return passenger
 
     except AuthenticationError as e:
