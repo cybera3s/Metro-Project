@@ -21,3 +21,7 @@ def main_menu_options():
     print("\t3. trip management")
     print("\t4. admin panel")
     print("\t5. exit")
+
+
+def any_key():
+    key = input("press any key to continue...")
