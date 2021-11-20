@@ -1,6 +1,7 @@
 from models import Passenger, SingleTrip, CreditCard, TimeCredit, Trip
 from metro.exceptions import RegisterError, BankAccountError, AuthenticationError, TripError, MetroCardError
-from metro.utils import clear_screen, main_menu_options, any_key,manage_bank_account_menu_options
+from metro.utils import clear_screen, main_menu_options, any_key, manage_bank_account_menu_options, \
+    trip_management_menu_options
 
 
 def main_menu():
@@ -165,27 +166,32 @@ def manage_bank_account_menu(passenger):
 
 
 def trip_management_menu(passenger):
-
+    """trip management menu """
     while True:
-        print("1. register new trip")
-        print("2. buy new card")
-        print("3. back to main menu")
 
-        option = input(">>> ")
+        clear_screen()
+        trip_management_menu_options()
+        option = input("\n>>> ")
 
+        # register new trip
         if option == "1":
 
+            clear_screen()
             register_trip(passenger)
 
+        # buy new card
         elif option == "2":
 
+            clear_screen()
             buy_cards_menu(passenger)
 
+        # back to main menu
         elif option == "3":
 
             main_menu()
 
         else:
+
             print("wrong option, try again")
 
 
