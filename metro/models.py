@@ -39,7 +39,7 @@ class Passenger:
         """checks user data and raise registerError"""
         fullname_regex = r"([a-zA-Z]+)\s{1}([a-zA-Z]+)"
         if not re.match(fullname_regex, fullname):
-            msg = "full name must contain only letters and one space between the firstname and last name"
+            msg = "full name must contain only letters and one space between the firstname and last name e.g:Sajad Safa"
             raise RegisterError(msg, "fullname", fullname)
 
         if not phone.startswith('09'):
