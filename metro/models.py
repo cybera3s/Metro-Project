@@ -272,11 +272,13 @@ class BankAccount:
         """If the amount is valid and does not make the account balance less than zero,
          it will be deducted from the account balance, otherwise it will return an error."""
 
+        if not amount.isdigit() or int(amount) <= 0:
+            raise BankAccountError("withdraw", "withdraw amount must be a number and greater than zero!")
+
         if (self.__balance - int(amount)) <= 0:
             raise BankAccountError("withdraw", "NOT Enough balance to withdraw!")
 
-        if not amount.isdigit() or int(amount) <= 0:
-            raise BankAccountError("withdraw", "withdraw amount must be a number and greater than zero!")
+
 
         self.__balance -= int(amount)
         self.owner.save_data()
@@ -293,7 +295,7 @@ class BankAccount:
         self.owner.save_data()
 
     def get_balance(self):
-        return self.__balance
+        return f"your balance : {self.__balance}"
 
     def __str__(self):
         msg = f"""\towner: {self.owner.fullname}\n\tbalance: {self.__balance}"""
