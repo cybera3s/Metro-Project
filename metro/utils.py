@@ -52,3 +52,10 @@ def buy_cards_menu_options():
 
 def any_key():
     key = input("\npress any key to continue...")
+
+
+def wrong_option():
+    """wrong option for menus"""
+    clear_screen()
+    print("wrong option, try again")
+    any_key()
