@@ -67,6 +67,7 @@ def register_menu():
     try:
 
         passenger = Passenger(fullname, phone_number, email)
+        clear_screen()
         print(passenger.register())
 
         print("\nsuccessfully registered !")

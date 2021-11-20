@@ -97,12 +97,12 @@ class Passenger:
 
     def __str__(self):
         msg = f"""
-        unique_id:{self.__unique_id}
-        fullname:{self.fullname}
-        phone:{self.phone}
-        email:{self.email}
-        Bank Account: \n{self.bank_account}
-        """
+    unique_id: {self.__unique_id}
+    fullname: {self.fullname}
+    phone: {self.phone}
+    email: {self.email}
+    Bank Account: \n{self.bank_account}
+    """
         return msg
 
 
