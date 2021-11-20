@@ -114,6 +114,8 @@ def authenticate():
 def manage_bank_account_menu(passenger):
     """management panel for bank account"""
     while True:
+
+        clear_screen()
         manage_bank_account_menu_options()
 
         owner = passenger.bank_account.owner.fullname
@@ -121,27 +123,41 @@ def manage_bank_account_menu(passenger):
 
         if option == "1":
 
+            clear_screen()
             amount = input("enter your amount to deposit: ")
+
             try:
 
                 passenger.bank_account.deposit(amount)
-
+                print("deposit was successful !")
+                any_key()
             except BankAccountError as e:
+
+                clear_screen()
                 print(e)
+                any_key()
 
         elif option == "2":
 
+            clear_screen()
             amount = input("enter your amount to withdraw: ")
             try:
 
                 passenger.bank_account.withdraw(amount)
+                print("withdraw was successful !")
+                any_key()
 
             except BankAccountError as e:
+
+                clear_screen()
                 print(e)
+                any_key()
 
         elif option == "3":
 
+            clear_screen()
             print(passenger.bank_account.get_balance())
+            any_key()
 
         elif option == "4":
 
