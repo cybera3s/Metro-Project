@@ -165,7 +165,7 @@ class SingleTrip(MetroCard):
         self.save_card()
 
     def __str__(self):
-        return f"Single trip metro Card"
+        return f"Single trip"
 
 
 class CreditCard(MetroCard):
