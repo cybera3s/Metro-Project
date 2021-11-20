@@ -18,15 +18,29 @@ def main_menu():
 
         elif option == "2":
             clear_screen()
-            unique_id = int(input("enter your unique id: "))
+
             try:
-                passenger = Passenger.authenticate(unique_id)
+
+                passenger = authenticate()
                 manage_bank_account_menu(passenger)
 
             except (AuthenticationError, BankAccountError) as e:
+
+                clear_screen()
                 print(e)
+                any_key()
+
+            except ValueError:
+
+                clear_screen()
+                print("All unique id characters must be integers !")
+                any_key()
+
             except Exception as e:
+
+                clear_screen()
                 print(e)
+                any_key()
 
         elif option == "3":
 
