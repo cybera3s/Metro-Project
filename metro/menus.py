@@ -78,15 +78,12 @@ def register_menu():
         print(e)
         any_key()
 
-def authenticate(unique_id):
+def authenticate():
     """authenticate a passenger by unique_id"""
 
-    try:
-        return Passenger.authenticate(unique_id)
-
-    except AuthenticationError as e:
-        print(e)
-
+    unique_id = int(input("enter your unique id: "))
+    passenger = Passenger.authenticate(int(unique_id))
+    return passenger
 
 def manage_bank_account_menu(passenger):
     """management panel for bank account"""
