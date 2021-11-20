@@ -278,6 +278,10 @@ def buy_cards_menu(passenger):
             passenger.bank_account.withdraw(str(card.price))
             card.save_card()
 
+            clear_screen()
+            print("single trip metro card successfully purchased")
+            any_key()
+
         # buy credit metro card for 5000
         elif option == "2":
 
@@ -285,12 +289,20 @@ def buy_cards_menu(passenger):
             passenger.bank_account.withdraw(str(card.price))
             card.save_card()
 
+            clear_screen()
+            print("credit metro card successfully purchased")
+            any_key()
+
         # buy time-credit metro card 6000
         elif option == "3":
 
             card = TimeCredit(passenger)
             passenger.bank_account.withdraw(str(card.price))
             card.save_card()
+
+            clear_screen()
+            print("time-credit metro card successfully purchased")
+            any_key()
 
         # back to cards menu
         elif option == "4":
