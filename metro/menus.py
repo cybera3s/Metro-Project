@@ -6,7 +6,7 @@ from metro.utils import clear_screen, main_menu_options, any_key
 def main_menu():
     """main menu function"""
     while True:
-        # clear_screen()
+        clear_screen()
         main_menu_options()
 
         option = input("\nyour option >>> ")
