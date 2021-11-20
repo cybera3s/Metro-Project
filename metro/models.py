@@ -52,7 +52,7 @@ class Passenger:
                 raise RegisterError("Invalid email format", "email", email)
 
     def register(self):
-        """register a Passenger"""
+        """checks passenger data then returns corresponding user"""
         Passenger.users = self.__check_create_user_db()
         Passenger.users.append(self)
         self.save_data()
