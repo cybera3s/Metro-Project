@@ -18,7 +18,7 @@ def register_trip(passenger):
 
         print("Cards List")
         for i, c in enumerate(my_cards, 1):
-            print(f"{i}: {c}")
+            print(f"\t{i}: {c}")
 
         try:
 
@@ -28,9 +28,8 @@ def register_trip(passenger):
                 raise IndexError()
 
             selected_card = my_cards[int(card) - 1]
-
+            clear_screen()
             print(selected_card, "selected")
-            clear_screen(1.5)
 
             if isinstance(selected_card, SingleTrip):
 
@@ -40,7 +39,8 @@ def register_trip(passenger):
 
                 selected_card.use_card(Trip.PRICE)
 
-            print("Pay successfully")
+            clear_screen(1)
+            print("Pay successfully...")
 
         except (IndexError, TypeError):
 
@@ -56,13 +56,14 @@ def register_trip(passenger):
             any_key()
             trip_management_menu(passenger)
 
-        clear_screen(1.5)
-        print("Available stations")
-        print(Trip.get_stations())
-
         while True:
-            origin = input("origin station: ")
-            destination = input("destination station: ")
+
+            clear_screen(1)
+            print("Available stations")
+            print(Trip.get_stations())
+
+            origin = input("\torigin station: ")
+            destination = input("\tdestination station: ")
 
             try:
 
@@ -70,9 +71,11 @@ def register_trip(passenger):
                 print(trip)
                 trip.progress()
                 print("trip successfully done")
+                trip_management_menu(passenger)
 
             except TripError as e:
 
                 clear_screen()
                 print(e)
                 any_key()
+
