@@ -37,8 +37,8 @@ class Passenger:
     @staticmethod
     def __check_user_data(fullname: str, phone: str, email: str):
         """checks user data and raise registerError"""
-        fullname_regex = r"([a-zA-Z])+\s{1}([a-zA-Z]+)"
-        if not re.match(fullname_regex, email):
+        fullname_regex = r"([a-zA-Z]+)\s{1}([a-zA-Z]+)"
+        if not re.match(fullname_regex, fullname):
             msg = "full name must contain only letters and one space between the firstname and last name"
             raise RegisterError(msg, "fullname", fullname)
 
