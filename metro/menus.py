@@ -184,7 +184,16 @@ def trip_management_menu(passenger):
         elif option == "2":
 
             clear_screen()
-            buy_cards_menu(passenger)
+
+            try:
+
+                buy_cards_menu(passenger)
+
+            except BankAccountError as e:
+
+                clear_screen()
+                print(e)
+                any_key()
 
         # back to main menu
         elif option == "3":
