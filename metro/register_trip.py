@@ -1,6 +1,7 @@
 from utils import any_key, clear_screen
 from models import *
-from menus import trip_management_menu
+from metro.menus import trip_management_menu
+from metro.exceptions import TripError
 
 
 def register_trip(passenger):
@@ -28,8 +29,8 @@ def register_trip(passenger):
 
             selected_card = my_cards[int(card) - 1]
 
-            clear_screen()
             print(selected_card, "selected")
+            clear_screen(1.5)
 
             if isinstance(selected_card, SingleTrip):
 
@@ -43,26 +44,35 @@ def register_trip(passenger):
 
         except (IndexError, TypeError):
 
+            clear_screen()
             print("invalid option, try again")
+            any_key()
             trip_management_menu(passenger)
 
         except MetroCardError as e:
+
+            clear_screen()
             print(e)
+            any_key()
             trip_management_menu(passenger)
 
-        clear_screen()
+        clear_screen(1.5)
         print("Available stations")
         print(Trip.get_stations())
 
-        origin = input("enter origin station: ")
-        destination = input("enter destination station: ")
+        while True:
+            origin = input("origin station: ")
+            destination = input("destination station: ")
 
-        try:
+            try:
 
-            trip = Trip(origin, destination)
-            print(trip)
-            trip.progress()
-            print("trip successfully done")
+                trip = Trip(origin, destination)
+                print(trip)
+                trip.progress()
+                print("trip successfully done")
 
-        except TripError as e:
-            print(e)
+            except TripError as e:
+
+                clear_screen()
+                print(e)
+                any_key()
