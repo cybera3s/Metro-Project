@@ -171,7 +171,8 @@ def trip_management_menu(passenger):
 
         clear_screen()
         trip_management_menu_options()
-        option = input("\n>>> ")
+        user = passenger.fullname
+        option = input(f"\n(user: {user}) >>> ")
 
         # register new trip
         if option == "1":
