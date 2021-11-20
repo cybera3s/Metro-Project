@@ -1,6 +1,6 @@
 from models import Passenger, SingleTrip, CreditCard, TimeCredit, Trip
 from metro.exceptions import RegisterError, BankAccountError, AuthenticationError, TripError, MetroCardError
-
+from metro.utils import clear_screen
 
 def main_menu():
     """main menu function"""
@@ -15,6 +15,7 @@ def main_menu():
 
         if option == "1":
 
+            clear_screen()
             register_menu()
 
         elif option == "2":
@@ -163,6 +164,7 @@ def register_trip(passenger):
         try:
 
             card = input("select your card: ")
+            #todo: fix it
             if int(card) < 0:
                 raise IndexError("index must be more than zero")
 
