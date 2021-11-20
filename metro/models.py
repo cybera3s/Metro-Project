@@ -73,6 +73,9 @@ class Passenger:
     @classmethod
     def authenticate(cls, unique_id: int):
         """authenticates a Passenger by unique_id"""
+        if not cls.__check_create_user_db():
+            raise AuthenticationError('No file', "Passenger Doesn't exist")
+
         cls.users = cls.load_data()
         users_id = list(map(lambda p: p.__unique_id, cls.users))
 
