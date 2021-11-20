@@ -42,7 +42,7 @@ class Passenger:
             msg = "full name must contain only letters and one space between the firstname and last name e.g:Sajad Safa"
             raise RegisterError(msg, "fullname", fullname)
 
-        if not phone.startswith('09'):
+        if not phone.startswith('09') or not len(phone) == 11:
             raise RegisterError("must start with 09...", "phone", phone)
 
         if email:
