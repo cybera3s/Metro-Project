@@ -56,9 +56,11 @@ def main_menu():
 
 def register_menu():
     """register new Passenger"""
-    fullname = input("enter your fullname : ")
-    phone_number = input("enter your phone number : ")
-    email = input("enter your email(optional): ")
+    print("_____________________REGISTER MENU_____________________\n")
+
+    fullname = input("\tenter your fullname : ")
+    phone_number = input("\tenter your phone number : ")
+    email = input("\tenter your email(optional): ")
 
     try:
         passenger = Passenger(fullname, phone_number, email)
