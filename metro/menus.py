@@ -17,23 +17,18 @@ def main_menu():
             register_menu()
 
         elif option == "2":
+
             clear_screen()
+            passenger = authenticate()
 
             try:
 
-                passenger = authenticate()
                 manage_bank_account_menu(passenger)
 
-            except (AuthenticationError, BankAccountError) as e:
+            except BankAccountError as e:
 
                 clear_screen()
                 print(e)
-                any_key()
-
-            except ValueError:
-
-                clear_screen()
-                print("All unique id characters must be integers !")
                 any_key()
 
             except Exception as e:
@@ -92,12 +87,29 @@ def register_menu():
         print(e)
         any_key()
 
+
 def authenticate():
     """authenticate a passenger by unique_id"""
+    try:
 
-    unique_id = int(input("enter your unique id: "))
-    passenger = Passenger.authenticate(int(unique_id))
-    return passenger
+        unique_id = int(input("enter your unique id: "))
+        passenger = Passenger.authenticate(int(unique_id))
+        return passenger
+
+    except AuthenticationError as e:
+
+        clear_screen()
+        print(e)
+        any_key()
+        main_menu()
+
+    except ValueError:
+
+        clear_screen()
+        print("All unique id characters must be integers !")
+        any_key()
+        main_menu()
+
 
 def manage_bank_account_menu(passenger):
     """management panel for bank account"""
