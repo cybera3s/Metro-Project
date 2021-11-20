@@ -2,6 +2,7 @@ from models import Passenger, SingleTrip, CreditCard, TimeCredit, Trip
 from metro.exceptions import RegisterError, BankAccountError, AuthenticationError, TripError, MetroCardError
 from metro.utils import clear_screen, main_menu_options, any_key, manage_bank_account_menu_options, \
     trip_management_menu_options, buy_cards_menu_options, wrong_option
+from register_trip import register_trip
 
 
 def main_menu():
@@ -202,64 +203,6 @@ def trip_management_menu(passenger):
         else:
 
             wrong_option()
-
-
-def register_trip(passenger):
-    """register trip section"""
-
-    # if passenger has no cards
-    if not passenger.list_cards():
-
-        print("There is no card to show, Buy first")
-        any_key()
-    else:
-
-        my_cards = passenger.list_cards()
-
-        print("Cards List")
-        for i, c in enumerate(my_cards, 1):
-            print(f"{i}: {c}")
-
-        try:
-
-            card = int(input("select your desired card: "))
-
-            if card <= 0 or my_cards[card - 1] not in my_cards:
-                raise IndexError()
-
-            selected_card = my_cards[int(card) - 1]
-            print(selected_card, "selected")
-
-            if isinstance(selected_card, SingleTrip):
-
-                selected_card.use_card()
-
-            else:
-
-                selected_card.use_card(Trip.PRICE)
-
-        except (IndexError, TypeError):
-
-            print("invalid option, try again")
-            trip_management_menu(passenger)
-
-        except MetroCardError as e:
-            print(e)
-            trip_management_menu(passenger)
-
-        print(Trip.get_stations())
-
-        origin = input("enter origin station: ")
-        destination = input("enter destination station: ")
-
-        try:
-
-            trip = Trip(origin, destination)
-            print(trip)
-            trip.progress()
-
-        except TripError as e:
-            print(e)
 
 
 def buy_cards_menu(passenger):
