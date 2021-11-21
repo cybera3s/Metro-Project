@@ -247,6 +247,7 @@ class Trip:
     """Trip class"""
     PRICE: int = 1500
     STATIONS = ["A", "B", "C", "D", "E", "F"]
+    trips = None
 
     def __init__(self, origin, destination):
 
@@ -261,6 +262,11 @@ class Trip:
         """save trip to file"""
         with open("trips.pk", "wb") as f:
             pickle.dump(self, f)
+
+    def load(self):
+        """load trips of file"""
+        with open("trips.pk", "rb") as f:
+            return pickle.load(f)
 
     @staticmethod
     def __check_data(origin: str, destination: str):
