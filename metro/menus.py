@@ -272,6 +272,8 @@ def control_menu(admin):
         elif option == "3":
 
             clear_screen()
+            admin_manage_trips(admin)
+            enter_key()
 
         elif option == "4":
 
@@ -353,13 +355,6 @@ def admin_register_trip(admin):
             enter_key()
             admin_register_trip(admin)
 
-    # trips = admin.load_trips()
-    # if trips:
-    #     for i, trip in enumerate(trips, 1):
-    #         print(f" {i} : " + 60 * "_" + f"\n{trip}")
-    # else:
-    #     print("theres is no trips yet to show !!!")
-
 
 def admin_manage_users(admin):
     """manage users section"""
@@ -372,3 +367,20 @@ def admin_manage_users(admin):
 
         for i, user in enumerate(users, 1):
             print(f" {i} : " + 60 * "_" + f"{user}")
+
+
+def admin_manage_trips(admin: Admin):
+    """manage trips"""
+
+    trips = admin.load_trips()
+    if not trips:
+
+        clear_screen()
+        print("there is no trips yet")
+        enter_key()
+        control_menu(admin)
+
+    else:
+
+        for i, trip in enumerate(trips, 1):
+            print(f" {i} : " + 60 * "_" + f"\n{trip}")
