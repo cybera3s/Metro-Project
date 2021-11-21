@@ -55,7 +55,7 @@ class Passenger:
 
     def register(self):
         """checks passenger data then returns corresponding user"""
-        Passenger.users = self.__check_create_user_db()
+        Passenger.users = self._check_create_user_db()
         Passenger.users.append(self)
         self.save_data()
         return self
@@ -75,7 +75,7 @@ class Passenger:
     @classmethod
     def authenticate(cls, unique_id: int):
         """authenticates a Passenger by unique_id"""
-        if not cls.__check_create_user_db():
+        if not cls._check_create_user_db():
             raise AuthenticationError('No file', "Passenger Doesn't exist")
 
         cls.users = cls.load_data()
@@ -126,7 +126,8 @@ class Admin(Passenger):
         return self.__password
 
     def __str__(self):
-        return super().__str__()+f"\n\tadmin: {self.is_admin}"
+        return super().__str__() + f"\n\tadmin: {self.is_admin}"
+
 
 class MetroCard(ABC):
     """base metro card class"""
