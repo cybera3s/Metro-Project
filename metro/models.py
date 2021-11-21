@@ -226,10 +226,10 @@ class Trip:
     @staticmethod
     def __check_data(origin: str, destination: str):
 
-        if origin.upper() not in Trip.STATIONS:
+        if origin not in Trip.STATIONS:
             raise TripError("origin", f"there is no '{origin}' station ")
 
-        if destination.upper() not in Trip.STATIONS:
+        if destination not in Trip.STATIONS:
             raise TripError("destination", f"there is no '{destination}' station ")
 
     def duration(self):
