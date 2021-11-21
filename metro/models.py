@@ -257,6 +257,11 @@ class Trip:
         self.start_time = datetime.now()
         self.end_time = self.start_time + timedelta(seconds=self.duration())
 
+    def save(self):
+        """save trip to file"""
+        with open("trips.pk", "wb") as f:
+            pickle.dump(self, f)
+
     @staticmethod
     def __check_data(origin: str, destination: str):
 
