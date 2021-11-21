@@ -140,7 +140,7 @@ class Admin(Passenger):
         return user
 
     def __str__(self):
-        return f"\n\tadmin: {self.is_admin}" + super().__str__()
+        return f"\nIs admin: {self.is_admin}" + super().__str__()
 
 
 class MetroCard(ABC):
