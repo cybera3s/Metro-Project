@@ -242,3 +242,10 @@ def buy_cards_menu(passenger):
         else:
 
             wrong_option()
+
+
+def control_menu():
+    """admin control menu"""
+
+    pass
+
