@@ -1,4 +1,4 @@
-from utils import any_key, clear_screen
+from utils import enter_key, clear_screen
 from models import *
 from metro.menus import trip_management_menu
 from metro.exceptions import TripError
