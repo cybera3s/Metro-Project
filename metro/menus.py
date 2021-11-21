@@ -220,7 +220,7 @@ def buy_cards_menu(passenger):
             card.save_card()
 
             clear_screen()
-            print("single trip metro card successfully purchased")
+            print("single trip card successfully purchased")
             any_key()
 
         # buy credit metro card for 5000
@@ -231,7 +231,7 @@ def buy_cards_menu(passenger):
             card.save_card()
 
             clear_screen()
-            print("credit metro card successfully purchased")
+            print("credit card successfully purchased")
             any_key()
 
         # buy time-credit metro card 6000
@@ -242,7 +242,7 @@ def buy_cards_menu(passenger):
             card.save_card()
 
             clear_screen()
-            print("time-credit metro card successfully purchased")
+            print("time-credit card successfully purchased")
             any_key()
 
         # back to cards menu
