@@ -257,6 +257,17 @@ class Trip:
 
         self.start_time = datetime.now()
         self.end_time = self.start_time + timedelta(seconds=self.duration())
+        Trip.trips = ...
+
+    @classmethod
+    def _check_db(cls):
+
+        if os.path.exists("trips.pk") as f:
+            cls.trips = pickle.load(f)
+        else:
+            cls.trips = []
+
+        return cls.trips
 
     def save(self):
         """save trip to file"""
