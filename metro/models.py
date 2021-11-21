@@ -116,9 +116,12 @@ class Admin(Passenger):
 
     is_admin = True
 
-    def __init__(self, fullname, password):
+    def __init__(self, fullname: str, password: str):
         super().__init__(fullname, "09123456789")
         self.fullname = fullname
+
+        if len(password) < 4:
+            raise RegisterError("password length must be more than 4 characters", "password", ...)
         self.__password = password
 
     def _get_password(self):
