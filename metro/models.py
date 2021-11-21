@@ -125,7 +125,8 @@ class Admin(Passenger):
         """return user password"""
         return self.__password
 
-
+    def __str__(self):
+        return super().__str__()+f"\n\tadmin: {self.is_admin}"
 
 class MetroCard(ABC):
     """base metro card class"""
