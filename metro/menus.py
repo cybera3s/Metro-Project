@@ -30,18 +30,7 @@ def main_menu():
 
             clear_screen()
             passenger = authenticate()
-
-            try:
-
-                trip_management_menu(passenger)
-
-            except BankAccountError as e:
-
-                print(e)
-
-            except Exception as e:
-
-                print("\n", e)
+            trip_management_menu(passenger)
 
         # admin panel
         elif option == "4":
