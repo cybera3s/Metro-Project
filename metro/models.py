@@ -138,6 +138,15 @@ class Admin(Passenger):
 
         return user
 
+    def load_users(self):
+        """load users from file users.pk"""
+        users = self.load_data()
+
+        if users:
+            return users
+        else:
+            return False
+
     @classmethod
     def load_trips(cls):
         """load trips from trips.pk then returns that"""
