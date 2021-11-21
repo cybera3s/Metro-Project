@@ -138,6 +138,15 @@ class Admin(Passenger):
 
         return user
 
+    @classmethod
+    def load_trips(cls):
+        """load trips from trips.pk then returns that"""
+        trips = Trip.load()
+        if trips:
+            return trips
+        else:
+            return False
+
     def __str__(self):
         return f"\nIs admin: {self.is_admin}" + super().__str__()
 
