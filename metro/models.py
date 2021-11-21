@@ -126,7 +126,7 @@ class Admin(Passenger):
         return self.__password
 
     def __str__(self):
-        return super().__str__() + f"\n\tadmin: {self.is_admin}"
+        return f"\n\tadmin: {self.is_admin}" + super().__str__()
 
 
 class MetroCard(ABC):
