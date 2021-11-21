@@ -247,12 +247,12 @@ def buy_cards_menu(passenger):
 
 def control_menu(admin):
     """admin control menu"""
-    admin = admin.fullname
+    admin = admin
     while True:
         clear_screen()
         control_menu_options()
 
-        option = input(f"\n(ADMIN: {admin}) >>> ")
+        option = input(f"\n(ADMIN: {admin.fullname}) >>> ")
 
         # register trip
         if option == "1":
@@ -263,6 +263,8 @@ def control_menu(admin):
         elif option == "2":
 
             clear_screen()
+            admin_manage_users(admin)
+            enter_key()
 
         # manage trips
         elif option == "3":
@@ -301,3 +303,14 @@ def login():
         print("All unique id characters must be integers !")
         enter_key()
         main_menu()
+
+
+def admin_manage_users(admin):
+
+    users = admin.load_users()
+    if users:
+        for i, user in enumerate(users, 1):
+            print(f"{i} : {user}")
+
+    else:
+        print("theres is no user to show !!!")
