@@ -308,10 +308,15 @@ def login():
         enter_key()
         main_menu()
 
-def admin_register_trip():
-    """register trip and save it"""
-    pass
 
+def admin_register_trip(admin):
+    """register trip and save it"""
+    trips = admin.load_trips()
+    if trips:
+        for i, trip in enumerate(users, 1):
+            print(f" {i} : " + 60 * "_" + f"{trip}")
+    else:
+        print("theres is no trips yet to show !!!")
 
 
 def admin_manage_users(admin):
@@ -319,7 +324,7 @@ def admin_manage_users(admin):
     users = admin.load_users()
     if users:
         for i, user in enumerate(users, 1):
-            print(f" {i} : "+60*"_"+f"{user}")
+            print(f" {i} : " + 60 * "_" + f"{user}")
 
     else:
         print("theres is no user to show !!!")
