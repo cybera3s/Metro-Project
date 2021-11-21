@@ -308,8 +308,9 @@ def login():
         enter_key()
         main_menu()
 
-def admin_manage_users(admin):
 
+def admin_manage_users(admin):
+    """manage users section"""
     users = admin.load_users()
     if users:
         for i, user in enumerate(users, 1):
