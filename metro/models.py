@@ -21,6 +21,9 @@ class Passenger:
         self.email = email
         # todo : empty list of metro cards
 
+    def _get_unique_id(self):
+        return self.__unique_id
+
     @classmethod
     def __check_create_user_db(cls):
         """checks if users.pk file exists then assign it to users list
