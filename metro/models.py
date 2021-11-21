@@ -257,7 +257,7 @@ class Trip:
 
         self.start_time = datetime.now()
         self.end_time = self.start_time + timedelta(seconds=self.duration())
-        Trip.trips = ...
+        Trip.trips = self._check_db()
 
     @classmethod
     def _check_db(cls):
