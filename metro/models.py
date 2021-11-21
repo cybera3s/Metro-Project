@@ -330,6 +330,16 @@ class Trip:
             time.sleep(1)
         print(f": {destination}")
 
+    def __repr__(self):
+
+        p = self.traveler.fullname
+        o = self.origin
+        de = self.destination
+        d = self.duration()
+        s = self.start_time
+        e = self.end_time
+        return f"( traveler:{p}, origin:{o}, destination:{de}, duration:{d}, start:{s}, end:{e} )"
+
     def __str__(self):
         msg = f"""traveler: {self.traveler.fullname}
 origin: {self.origin}
