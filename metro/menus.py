@@ -244,8 +244,32 @@ def buy_cards_menu(passenger):
             wrong_option()
 
 
-def control_menu():
+def control_menu(admin):
     """admin control menu"""
 
-    pass
+    while True:
+        clear_screen()
+        control_menu_options()
 
+        option = input(">>> ")
+
+        if option == "1":
+
+            clear_screen()
+
+        elif option == "2":
+
+            clear_screen()
+
+        elif option == "3":
+
+            clear_screen()
+
+        elif option == "4":
+
+            clear_screen()
+            main_menu()
+
+        else:
+
+            wrong_option()
