@@ -371,5 +371,5 @@ class BankAccount:
         return f"your balance : {self.__balance}"
 
     def __str__(self):
-        msg = f"""\towner: {self.owner.fullname}\n\tbalance: {self.__balance}"""
+        msg = f"""{self.owner.fullname}\'s bank account , balance: {self.__balance}"""
         return msg
