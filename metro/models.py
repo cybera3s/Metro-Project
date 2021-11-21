@@ -19,7 +19,6 @@ class Passenger:
         self.fullname = fullname
         self.phone = phone
         self.email = email
-        # todo : empty list of metro cards
 
     def _get_unique_id(self):
         return self.__unique_id
