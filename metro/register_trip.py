@@ -13,7 +13,7 @@ def register_trip(passenger):
     if not passenger.list_cards():
 
         print("There is no card to show, Buy first")
-        any_key()
+        enter_key()
 
     else:
 
@@ -49,14 +49,14 @@ def register_trip(passenger):
 
             clear_screen()
             print("invalid option, try again")
-            any_key()
+            enter_key()
             trip_management_menu(passenger)
 
         except MetroCardError as e:
 
             clear_screen()
             print(e)
-            any_key()
+            enter_key()
             trip_management_menu(passenger)
 
         while True:
@@ -75,11 +75,11 @@ def register_trip(passenger):
                 clear_screen()
                 print("trip successfully done !!!")
                 print("__________________ TRIP INFO __________________", trip, sep="\n")
-                any_key()
+                enter_key()
                 trip_management_menu(passenger)
 
             except TripError as e:
 
                 clear_screen()
                 print(e)
-                any_key()
+                enter_key()
