@@ -273,7 +273,7 @@ def control_menu(admin):
 
             clear_screen()
             admin_manage_trips(admin)
-            enter_key()
+
 
         elif option == "4":
 
@@ -382,5 +382,83 @@ def admin_manage_trips(admin: Admin):
 
     else:
 
+        print("__________________ TRIPS LIST __________________\n")
+
         for i, trip in enumerate(trips, 1):
-            print(f" {i} : " + 60 * "_" + f"\n{trip}")
+            print(f" {i} >>> {repr(trip)}")
+
+        print("\t1. delete", "\t2. Re-value", sep="\n", end="\n")
+
+        opt = input("\n>>> ")
+
+        # delete section
+        if opt == "1":
+
+            try:
+
+                selected_trip = int(input("which one do you want to delete : "))
+                trips.pop(selected_trip-1)
+                Trip.trips = trips
+                Trip.save()
+                print("the trip removed !")
+                enter_key()
+
+            except (IndexError, ValueError):
+
+                clear_screen()
+                print("Invalid options !")
+                enter_key()
+                control_menu(admin)
+
+        # re-value section
+        elif opt == "2":
+
+            users = admin.load_users()
+            if not users:
+
+                print("there is no user yet to pass as traveler !")
+                enter_key()
+                control_menu(admin)
+
+            else:
+
+                travelers = users
+                travelers_name = list(map(lambda u: u.fullname, travelers))
+
+                print("travelers : ", end=" ")
+                for i, traveler in enumerate(travelers_name, 1):
+                    print(f"{i}-", traveler, end="  ")
+
+                try:
+
+                    selected_trip = int(input("\nwhich one do you want to re-value : "))
+                    origin = input("new origin >>> ")
+                    destination = input("new destination >>> ")
+                    traveler = int(input("new traveler >>> "))
+
+                    trips[selected_trip - 1] = Trip(origin.upper(), destination.upper(), travelers[traveler - 1])
+                    Trip.trips = trips
+                    Trip.save()
+
+                    print("the trip revalued !")
+                    enter_key()
+
+                except (IndexError, ValueError):
+
+                    clear_screen()
+                    print("Invalid options !")
+                    enter_key()
+                    control_menu(admin)
+
+                except TripError as e:
+
+                    clear_screen()
+                    print(e)
+                    enter_key()
+                    control_menu(admin)
+        else:
+
+            clear_screen()
+            print("wrong option!")
+            enter_key()
+            control_menu(admin)
