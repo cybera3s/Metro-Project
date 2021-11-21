@@ -35,8 +35,9 @@ def main_menu():
         # admin panel
         elif option == "4":
 
-            # todo: admin panel section
-            pass
+            clear_screen()
+            admin = login()
+            control_menu(admin)
 
         # exit
         elif option == "5":
