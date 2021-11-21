@@ -12,11 +12,12 @@ def create_super_user():
         print("__________________ CREATE ADMIN USER__________________\n")
 
         fullname = input("enter your fullname: ")
+        phone_number = input("enter your phone: ")
         password = input("enter your password: ")
 
         try:
 
-            admin = Admin(fullname, password)
+            admin = Admin(fullname, phone_number, password)
             clear_screen()
             print(admin.register())
 
