@@ -338,7 +338,7 @@ class Trip:
         d = self.duration()
         s = self.start_time
         e = self.end_time
-        return f"( traveler:{p}, origin:{o}, destination:{de}, duration:{d}, start:{s}, end:{e} )"
+        return f"*** traveler: {p}, origin: {o}, destination: {de}, duration: {d}, start: {s}, end: {e} ***"
 
     def __str__(self):
         msg = f"""traveler: {self.traveler.fullname}
