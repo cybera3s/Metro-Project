@@ -290,7 +290,7 @@ class Trip:
     def save(self):
         """save trip to file"""
         with open("trips.pk", "wb") as f:
-            pickle.dump(self, f)
+            pickle.dump(Trip.trips, f)
 
     @staticmethod
     def load():
