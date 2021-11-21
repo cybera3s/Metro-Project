@@ -274,8 +274,8 @@ class Trip:
         """save trip to file"""
         with open("trips.pk", "wb") as f:
             pickle.dump(self, f)
-
-    def load(self):
+    @staticmethod
+    def load():
         """load trips of file"""
         with open("trips.pk", "rb") as f:
             return pickle.load(f)
