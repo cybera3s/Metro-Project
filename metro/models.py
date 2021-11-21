@@ -249,15 +249,16 @@ class Trip:
     STATIONS = ["A", "B", "C", "D", "E", "F"]
     trips = None
 
-    def __init__(self, origin, destination):
+    def __init__(self, origin, destination, traveler: Passenger):
 
         self.__check_data(origin, destination)
         self.origin = origin
         self.destination = destination
-
+        self.traveler = traveler
         self.start_time = datetime.now()
         self.end_time = self.start_time + timedelta(seconds=self.duration())
         Trip.trips = self._check_db()
+        Trip.trips.append(self)
 
     @classmethod
     def _check_db(cls):
