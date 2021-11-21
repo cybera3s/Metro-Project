@@ -108,10 +108,14 @@ class Passenger:
 
         return msg
 
-class Admin:
-    """reperesent admin user"""
+
+class Admin(Passenger):
+    """represent admin user"""
+
+    is_admin = True
 
     def __init__(self, fullname, password):
+        super().__init__(fullname, "09123456789")
         self.fullname = fullname
         self.__password = password
 
@@ -286,8 +290,6 @@ class BankAccount:
 
         if (self.__balance - int(amount)) <= 0:
             raise BankAccountError("withdraw", "NOT Enough balance to withdraw!")
-
-
 
         self.__balance -= int(amount)
         self.owner.save_data()
