@@ -76,12 +76,12 @@ def register_menu():
         print(passenger.register())
 
         print("\nsuccessfully registered !")
-        any_key()
+        enter_key()
 
     except RegisterError as e:
         clear_screen()
         print(e)
-        any_key()
+        enter_key()
 
 
 def authenticate():
@@ -96,14 +96,14 @@ def authenticate():
 
         clear_screen()
         print(e)
-        any_key()
+        enter_key()
         main_menu()
 
     except ValueError:
 
         clear_screen()
         print("All unique id characters must be integers !")
-        any_key()
+        enter_key()
         main_menu()
 
 
@@ -126,12 +126,12 @@ def manage_bank_account_menu(passenger):
 
                 passenger.bank_account.deposit(amount)
                 print("deposit was successful !")
-                any_key()
+                enter_key()
             except BankAccountError as e:
 
                 clear_screen()
                 print(e)
-                any_key()
+                enter_key()
 
         elif option == "2":
 
@@ -141,19 +141,19 @@ def manage_bank_account_menu(passenger):
 
                 passenger.bank_account.withdraw(amount)
                 print("withdraw was successful !")
-                any_key()
+                enter_key()
 
             except BankAccountError as e:
 
                 clear_screen()
                 print(e)
-                any_key()
+                enter_key()
 
         elif option == "3":
 
             clear_screen()
             print(passenger.bank_account.get_balance())
-            any_key()
+            enter_key()
 
         elif option == "4":
 
@@ -192,7 +192,7 @@ def trip_management_menu(passenger):
 
                 clear_screen()
                 print(e)
-                any_key()
+                enter_key()
 
         # back to main menu
         elif option == "3":
@@ -221,7 +221,7 @@ def buy_cards_menu(passenger):
 
             clear_screen()
             print("single trip card successfully purchased")
-            any_key()
+            enter_key()
 
         # buy credit metro card for 5000
         elif option == "2":
@@ -232,7 +232,7 @@ def buy_cards_menu(passenger):
 
             clear_screen()
             print("credit card successfully purchased")
-            any_key()
+            enter_key()
 
         # buy time-credit metro card 6000
         elif option == "3":
@@ -243,7 +243,7 @@ def buy_cards_menu(passenger):
 
             clear_screen()
             print("time-credit card successfully purchased")
-            any_key()
+            enter_key()
 
         # back to cards menu
         elif option == "4":
