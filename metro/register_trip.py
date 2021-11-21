@@ -7,16 +7,19 @@ from metro.exceptions import TripError
 def register_trip(passenger):
     """register trip section"""
 
+    # list cards section
+
     # if passenger has no cards
     if not passenger.list_cards():
 
         print("There is no card to show, Buy first")
         any_key()
+
     else:
 
         my_cards = passenger.list_cards()
 
-        print("Cards List")
+        print("__________________ CARDS LIST __________________\n")
         for i, c in enumerate(my_cards, 1):
             print(f"\t{i}: {c}")
 
@@ -27,22 +30,22 @@ def register_trip(passenger):
             if card <= 0 or my_cards[card - 1] not in my_cards:
                 raise IndexError()
 
-            selected_card = my_cards[int(card) - 1]
+            selected_card = my_cards[card - 1]
             clear_screen()
             print(selected_card, "selected")
-
+            clear_screen(1)
+            # use different cards
             if isinstance(selected_card, SingleTrip):
-
-                selected_card.use_card()
+                selected_card.use_card()  # just delete it from card list
 
             else:
-
                 selected_card.use_card(Trip.PRICE)
+                print(selected_card)
 
-            clear_screen(1)
             print("Pay successfully...")
+            clear_screen(1.5)
 
-        except (IndexError, TypeError):
+        except (IndexError, ValueError):
 
             clear_screen()
             print("invalid option, try again")
@@ -78,4 +81,3 @@ def register_trip(passenger):
                 clear_screen()
                 print(e)
                 any_key()
-
