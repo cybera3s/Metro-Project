@@ -258,6 +258,8 @@ def control_menu(admin):
         if option == "1":
 
             clear_screen()
+            admin_register_trip(admin)
+            enter_key()
 
         # manage users
         elif option == "2":
@@ -313,7 +315,7 @@ def admin_register_trip(admin):
     """register trip and save it"""
     trips = admin.load_trips()
     if trips:
-        for i, trip in enumerate(users, 1):
+        for i, trip in enumerate(trips, 1):
             print(f" {i} : " + 60 * "_" + f"{trip}")
     else:
         print("theres is no trips yet to show !!!")
