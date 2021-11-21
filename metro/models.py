@@ -24,7 +24,7 @@ class Passenger:
         return self.__unique_id
 
     @classmethod
-    def __check_create_user_db(cls):
+    def _check_create_user_db(cls):
         """checks if users.pk file exists then assign it to users list
          otherwise users list is a empty list
          return users"""
@@ -124,6 +124,7 @@ class Admin(Passenger):
     def _get_password(self):
         """return user password"""
         return self.__password
+
 
 
 class MetroCard(ABC):
