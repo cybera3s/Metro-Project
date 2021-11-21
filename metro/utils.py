@@ -64,7 +64,7 @@ def wrong_option():
 
 def control_menu_options():
     """control menu options"""
-    print("_____________________ BUY CARDS MENU _____________________\n")
+    print("_____________________ ADMIN CONTROL MENU _____________________\n")
     print("\t1. register trip")
     print("\t2. manage users")
     print("\t3. manage trips")
