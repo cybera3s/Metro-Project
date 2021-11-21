@@ -253,14 +253,17 @@ def control_menu(admin):
 
         option = input(">>> ")
 
+        # register trip
         if option == "1":
 
             clear_screen()
 
+        # manage users
         elif option == "2":
 
             clear_screen()
 
+        # manage trips
         elif option == "3":
 
             clear_screen()
