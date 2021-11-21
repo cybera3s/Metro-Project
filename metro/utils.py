@@ -50,8 +50,11 @@ def buy_cards_menu_options():
     print("\t4. back to cards menu")
 
 
-def any_key():
-    key = input("\npress any key to continue...")
+def enter_key():
+
+    while input("press Enter key to continue...") != "":
+
+        print("press just Enter key to continue...")
 
 
 def wrong_option():
