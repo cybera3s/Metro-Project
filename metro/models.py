@@ -125,6 +125,17 @@ class Admin(Passenger):
         """return user password"""
         return self.__password
 
+    @classmethod
+    def login(cls, unique_id, password):
+        """login admin with password and unique id and returns that user"""
+        user = cls.authenticate(unique_id)
+        if not user:
+            raise AuthenticationError("authentication", "this admin user doesn't exists")
+        if user.__password != password:
+            raise AuthenticationError("password", "password is incorrect !")
+
+        return user
+
     def __str__(self):
         return f"\n\tadmin: {self.is_admin}" + super().__str__()
 
