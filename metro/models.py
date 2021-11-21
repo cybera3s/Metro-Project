@@ -263,7 +263,7 @@ class Trip:
     @classmethod
     def _check_db(cls):
         """check for existence of file"""
-        if os.path.exists("trips.pk") as f:
+        if os.path.exists("trips.pk"):
             cls.trips = cls.load()
         else:
             cls.trips = []
