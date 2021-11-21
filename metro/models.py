@@ -295,8 +295,11 @@ class Trip:
     @staticmethod
     def load():
         """load trips of file"""
-        with open("trips.pk", "rb") as f:
-            return pickle.load(f)
+        if os.path.exists("trips.pk"):
+            with open("trips.pk", "rb") as f:
+                return pickle.load(f)
+        else:
+            return False
 
     @staticmethod
     def __check_data(origin: str, destination: str):
