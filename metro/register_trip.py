@@ -74,6 +74,7 @@ def register_trip(passenger):
                 trip.progress()
                 clear_screen()
                 print("trip successfully done !!!")
+                trip.save()
                 print("__________________ TRIP INFO __________________", trip, sep="\n")
                 enter_key()
                 trip_management_menu(passenger)
