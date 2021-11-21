@@ -51,8 +51,8 @@ def buy_cards_menu_options():
 
 
 def enter_key():
-    while input("press Enter key to continue...") != "":
-        print("press just Enter key to continue...")
+    while input("\npress Enter key to continue...") != "":
+        print("\npress just Enter key to continue...")
 
 
 def wrong_option():

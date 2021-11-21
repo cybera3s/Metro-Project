@@ -1,5 +1,5 @@
 import register_trip
-from metro.exceptions import RegisterError, BankAccountError, AuthenticationError
+from metro.exceptions import *
 from metro.utils import *
 from models import Passenger, SingleTrip, CreditCard, TimeCredit, Admin
 
@@ -303,7 +303,10 @@ def login():
         print("All unique id characters must be integers !")
         enter_key()
         main_menu()
-
+    except Exception as e:
+        print(e)
+        enter_key()
+        main_menu()
 
 def admin_manage_users(admin):
 
