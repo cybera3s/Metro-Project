@@ -51,9 +51,7 @@ def buy_cards_menu_options():
 
 
 def enter_key():
-
     while input("press Enter key to continue...") != "":
-
         print("press just Enter key to continue...")
 
 
@@ -62,3 +60,12 @@ def wrong_option():
     clear_screen()
     print("wrong option, try again")
     enter_key()
+
+
+def control_menu_options():
+    """control menu options"""
+    print("_____________________ BUY CARDS MENU _____________________\n")
+    print("\t1. register trip")
+    print("\t2. manage users")
+    print("\t3. manage trips")
+    print("\t3. back to main menu")
