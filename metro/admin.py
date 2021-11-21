@@ -6,7 +6,9 @@ from exceptions import RegisterError
 
 def create_super_user():
     """register a new admin"""
+
     if sys.argv[1] == "createsuperuser":
+        clear_screen()
         print("__________________ CREATE ADMIN USER__________________\n")
 
         fullname = input("enter your fullname: ")
