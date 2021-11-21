@@ -308,6 +308,11 @@ def login():
         enter_key()
         main_menu()
 
+def admin_register_trip():
+    """register trip and save it"""
+    pass
+
+
 
 def admin_manage_users(admin):
     """manage users section"""
