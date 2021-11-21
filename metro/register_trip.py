@@ -61,19 +61,21 @@ def register_trip(passenger):
 
         while True:
 
-            clear_screen(1)
-            print("Available stations")
-            print(Trip.get_stations())
+            clear_screen()
+            print("Available stations: ", Trip.get_stations())
 
             origin = input("\torigin station: ")
             destination = input("\tdestination station: ")
 
             try:
 
-                trip = Trip(origin, destination)
-                print(trip)
+                clear_screen()
+                trip = Trip(origin.upper(), destination.upper())
                 trip.progress()
-                print("trip successfully done")
+                clear_screen()
+                print("trip successfully done !!!")
+                print("__________________ TRIP INFO __________________", trip, sep="\n")
+                any_key()
                 trip_management_menu(passenger)
 
             except TripError as e:
