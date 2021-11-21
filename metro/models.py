@@ -331,7 +331,8 @@ class Trip:
         print(f": {destination}")
 
     def __str__(self):
-        msg = f"""origin: {self.origin}
+        msg = f"""traveler: {self.traveler.fullname}
+origin: {self.origin}
 destination: {self.destination}
 start time: {self.start_time}
 end time: {self.end_time}
