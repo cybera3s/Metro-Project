@@ -2,7 +2,7 @@ import os
 import pickle
 import re
 from abc import ABC, abstractmethod
-from metro.exceptions import RegisterError, AuthenticationError, BankAccountError, TripError, MetroCardError
+from exceptions import RegisterError, AuthenticationError, BankAccountError, TripError, MetroCardError
 from datetime import datetime, timedelta
 import time
 
