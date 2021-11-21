@@ -1,7 +1,7 @@
-from models import Passenger, SingleTrip, CreditCard, TimeCredit, Trip
-from metro.exceptions import RegisterError, BankAccountError, AuthenticationError, TripError, MetroCardError
-from metro.utils import *
 import register_trip
+from metro.exceptions import RegisterError, BankAccountError, AuthenticationError
+from metro.utils import *
+from models import Passenger, SingleTrip, CreditCard, TimeCredit, Admin
 
 
 def main_menu():
@@ -276,3 +276,27 @@ def control_menu(admin):
         else:
 
             wrong_option()
+
+
+def login():
+    """admin login section"""
+    try:
+
+        unique_id = int(input("enter your unique id: "))
+        password = input("enter your password: ")
+        admin = Admin.login(unique_id, password)
+        return admin
+
+    except AuthenticationError as e:
+
+        clear_screen()
+        print(e)
+        enter_key()
+        main_menu()
+
+    except ValueError:
+
+        clear_screen()
+        print("All unique id characters must be integers !")
+        enter_key()
+        main_menu()
