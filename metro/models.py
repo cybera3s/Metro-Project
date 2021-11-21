@@ -121,7 +121,9 @@ class Admin(Passenger):
         self.fullname = fullname
         self.__password = password
 
-
+    def _get_password(self):
+        """return user password"""
+        return self.__password
 
 
 class MetroCard(ABC):
