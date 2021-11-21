@@ -70,7 +70,7 @@ def register_trip(passenger):
             try:
 
                 clear_screen()
-                trip = Trip(origin.upper(), destination.upper())
+                trip = Trip(origin.upper(), destination.upper(), passenger)
                 trip.progress()
                 clear_screen()
                 print("trip successfully done !!!")
