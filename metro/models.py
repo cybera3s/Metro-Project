@@ -157,7 +157,7 @@ class Admin(Passenger):
             return False
 
     def __str__(self):
-        return f"\nIs admin: {self.is_admin}" + super().__str__()
+        return f"\n\tIs admin: {self.is_admin}" + super().__str__()
 
 
 class MetroCard(ABC):
