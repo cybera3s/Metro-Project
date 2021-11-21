@@ -1,7 +1,7 @@
 import register_trip
 from metro.exceptions import *
 from metro.utils import *
-from models import Passenger, SingleTrip, CreditCard, TimeCredit, Admin
+from models import Passenger, SingleTrip, CreditCard, TimeCredit, Admin, Trip
 
 
 def main_menu():
@@ -313,12 +313,54 @@ def login():
 
 def admin_register_trip(admin):
     """register trip and save it"""
-    trips = admin.load_trips()
-    if trips:
-        for i, trip in enumerate(trips, 1):
-            print(f" {i} : " + 60 * "_" + f"{trip}")
+    users = admin.load_users()
+    if not users:
+        print("there is no user yet to pass as traveler !")
+        enter_key()
+        control_menu(admin)
+
     else:
-        print("theres is no trips yet to show !!!")
+
+        print("__________________ REGISTER NEW TRIP __________________\n")
+        travelers = users
+        travelers_name = list(map(lambda u: u.fullname, travelers))
+
+        print("travelers : ", end=" ")
+        for i, traveler in enumerate(travelers_name, 1):
+            print(f"{i}-", traveler, end="  ")
+
+        try:
+
+            origin = input("\norigin >>> ")
+            destination = input("destination >>> ")
+            selected_traveler = int(input("traveler >>> "))
+
+            new_trip = Trip(origin.upper(), destination.upper(), travelers[selected_traveler - 1])
+            new_trip.save()
+            print(f"trip registered successfully")
+
+        except TripError as e:
+
+            clear_screen()
+            print(e)
+            enter_key()
+            control_menu(admin)
+
+        except (ValueError, IndexError):
+
+            clear_screen()
+            print("invalid option for traveler ! try again")
+            enter_key()
+            admin_register_trip(admin)
+
+
+
+    # trips = admin.load_trips()
+    # if trips:
+    #     for i, trip in enumerate(trips, 1):
+    #         print(f" {i} : " + 60 * "_" + f"\n{trip}")
+    # else:
+    #     print("theres is no trips yet to show !!!")
 
 
 def admin_manage_users(admin):
