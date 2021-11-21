@@ -61,4 +61,4 @@ def wrong_option():
     """wrong option for menus"""
     clear_screen()
     print("wrong option, try again")
-    any_key()
+    enter_key()
