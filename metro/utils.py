@@ -44,10 +44,10 @@ def buy_cards_menu_options():
     """prints buy cards menu options optioans"""
 
     print("_____________________ BUY CARDS MENU _____________________\n")
-    print("\t1.buy Single Trip metro card for 1000")
-    print("\t2.buy credit metro card for 5000")
-    print("\t3.buy time-credit metro card 6000")
-    print("\t4.back to cards menu")
+    print("\t1. Single Trip card - price: 1000$")
+    print("\t2. credit card - price: 5000$, initial credit: 3000$")
+    print("\t3. time-credit card - price: 6000$,  initial credit: 6000$, duration: 5 days")
+    print("\t4. back to cards menu")
 
 
 def any_key():
