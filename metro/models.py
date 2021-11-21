@@ -116,9 +116,8 @@ class Admin(Passenger):
 
     is_admin = True
 
-    def __init__(self, fullname: str, password: str):
-        super().__init__(fullname, "09123456789")
-        self.fullname = fullname
+    def __init__(self, fullname: str, phone: str, password: str):
+        super().__init__(fullname, phone)
 
         if len(password) < 4:
             raise RegisterError("password length must be more than 4 characters", "password", ...)
@@ -274,6 +273,7 @@ class Trip:
         """save trip to file"""
         with open("trips.pk", "wb") as f:
             pickle.dump(self, f)
+
     @staticmethod
     def load():
         """load trips of file"""
