@@ -353,8 +353,6 @@ def admin_register_trip(admin):
             enter_key()
             admin_register_trip(admin)
 
-
-
     # trips = admin.load_trips()
     # if trips:
     #     for i, trip in enumerate(trips, 1):
@@ -366,9 +364,11 @@ def admin_register_trip(admin):
 def admin_manage_users(admin):
     """manage users section"""
     users = admin.load_users()
-    if users:
+    if not users:
+        print("there is no user yet")
+        enter_key()
+        control_menu(admin)
+    else:
+
         for i, user in enumerate(users, 1):
             print(f" {i} : " + 60 * "_" + f"{user}")
-
-    else:
-        print("theres is no user to show !!!")
