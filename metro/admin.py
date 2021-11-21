@@ -1,7 +1,7 @@
 import sys
-from models import *
+from models import Admin
 from utils import *
-
+from exceptions import RegisterError
 
 if sys.argv[1] == "createsuperuser":
     print("__________________ CREATE ADMIN USER__________________\n")
@@ -23,5 +23,3 @@ if sys.argv[1] == "createsuperuser":
         clear_screen()
         print(e)
         enter_key()
-
-
