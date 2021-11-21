@@ -247,12 +247,12 @@ def buy_cards_menu(passenger):
 
 def control_menu(admin):
     """admin control menu"""
-
+    admin = admin.fullname
     while True:
         clear_screen()
         control_menu_options()
 
-        option = input(">>> ")
+        option = input(f"\n(ADMIN: {admin}) >>> ")
 
         # register trip
         if option == "1":
