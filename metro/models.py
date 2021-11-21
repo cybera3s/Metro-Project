@@ -108,6 +108,15 @@ class Passenger:
 
         return msg
 
+class Admin:
+    """reperesent admin user"""
+
+    def __init__(self, fullname, password):
+        self.fullname = fullname
+        self.__password = password
+
+
+
 
 class MetroCard(ABC):
     """base metro card class"""
