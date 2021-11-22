@@ -88,6 +88,8 @@ def authenticate():
     try:
 
         unique_id = int(input("enter your unique id: "))
+        logger.debug(f"{unique_id} entered for unique_id field")
+
         passenger = Passenger.authenticate(unique_id)
         return passenger
 
@@ -95,6 +97,7 @@ def authenticate():
 
         clear_screen()
         print(e)
+        logger.error(f"{e.msg}, {e.reason}")
         enter_key()
         main_menu()
 
