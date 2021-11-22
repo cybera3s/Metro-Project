@@ -374,6 +374,8 @@ def admin_manage_users(admin):
 
     else:
 
+        print("___________________________ USERS LIST ___________________________\n")
+
         for i, user in enumerate(users, 1):
             print(f" {i} : " + 60 * "_" + f"{user}")
 
