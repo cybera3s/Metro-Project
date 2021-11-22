@@ -15,7 +15,8 @@ def main_menu():
         main_menu_options()
 
         option = input("\nyour option >>> ")
-        logger.debug(option)
+        logger.debug(f"option {option} entered")
+
         # register new Passenger
         if option == "1":
 
@@ -62,6 +63,7 @@ def register_menu():
     fullname = input("enter your fullname (e.g : Harry Potter) : ")
     phone_number = input("enter your phone number : ")
     email = input("enter your email (optional): ")
+    logger.debug(f"fullname : {fullname}, phone_number : {phone_number}, email: {email}")
 
     try:
 
@@ -69,12 +71,15 @@ def register_menu():
         clear_screen()
         print(passenger.register())
 
+        logger.debug(f"{fullname} successfully registered")
         print("\nsuccessfully registered !")
         enter_key()
 
     except RegisterError as e:
+
         clear_screen()
         print(e)
+        logger.error(f"failed to register , {e.msg} , {e.data} entered")
         enter_key()
 
 
