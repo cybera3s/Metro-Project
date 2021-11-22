@@ -183,14 +183,16 @@ def manage_bank_account_menu(passenger: Passenger):
             logger.info(f"{passenger.fullname} enter wrong option, manage_bank_account_menu")
 
 
-def trip_management_menu(passenger):
+def trip_management_menu(passenger: Passenger):
     """trip management menu """
     while True:
 
         clear_screen()
         trip_management_menu_options()
+
         user = passenger.fullname
         option = input(f"\n(user: {user}) >>> ")
+        logger.debug(f"{user} entered {option}, trip_management_menu")
 
         # register new trip
         if option == "1":
