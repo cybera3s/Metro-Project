@@ -226,6 +226,8 @@ class SingleTrip(MetroCard):
     def __str__(self):
         return f"Single trip"
 
+    def __repr__(self):
+        return f"owner: {self.owner.fullname}, " + self.__str__()
 
 class CreditCard(MetroCard):
     """Metro Credit Card class"""
