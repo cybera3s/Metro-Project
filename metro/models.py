@@ -229,6 +229,7 @@ class SingleTrip(MetroCard):
     def __repr__(self):
         return f"owner: {self.owner.fullname}, " + self.__str__()
 
+
 class CreditCard(MetroCard):
     """Metro Credit Card class"""
 
@@ -247,6 +248,7 @@ class CreditCard(MetroCard):
 
     def __repr__(self):
         return f"owner: {self.owner.fullname}, " + self.__str__()
+
 
 class TimeCredit(MetroCard):
     """Metro time credit card class"""
