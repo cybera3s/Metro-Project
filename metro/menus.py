@@ -103,11 +103,11 @@ def authenticate():
         enter_key()
         main_menu()
 
-    except ValueError:
+    except ValueError as e:
 
         clear_screen()
         print("All unique id characters must be integers !")
-        logger.error(f"{e.msg}, {e.reason}")
+        logger.error(f"{e}")
         enter_key()
         main_menu()
 
@@ -354,7 +354,7 @@ def login():
         enter_key()
         main_menu()
 
-    except ValueError:
+    except ValueError as e:
 
         clear_screen()
         print("All unique id characters must be integers !")
@@ -408,7 +408,7 @@ def admin_register_trip(admin: Admin):
             new_trip = Trip(origin.upper(), destination.upper(), chosen)
             new_trip.save()
             print(f"trip registered successfully")
-            logger.debug(f"{admin.fullname} registered a trip successfully, {trip}")
+            logger.debug(f"{admin.fullname} registered a trip successfully, {new_trip}")
 
         except (ValueError, IndexError) as e:
 
@@ -591,12 +591,15 @@ def admin_manage_cards(admin: Admin):
     if not admin.load_cards():
 
         print("There is no cards yet !!!")
+        logger.info(f"{admin.fullname} get empty list of cards")
         enter_key()
         control_menu(admin)
 
     else:
 
         cards = admin.load_cards()
+        logger.info(f"{admin.fullname} get {len(cards)} of cards")
+
         print("___________________________ CARDS LIST ___________________________\n")
 
         for i, card in enumerate(cards, 1):
