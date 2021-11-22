@@ -2,7 +2,7 @@ import logging
 
 fmt = '%(name)s >>> %(levelname)s: %(asctime)s - %(message)s'
 level = logging.DEBUG
-logging.basicConfig(filename='metro.log', format=fmt, level=level)
+logging.basicConfig(filename='metro.log', format=fmt, level=level, filemode="w")
 
 
 class Logger:
