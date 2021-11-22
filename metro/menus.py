@@ -107,6 +107,7 @@ def authenticate():
 
         clear_screen()
         print("All unique id characters must be integers !")
+        logger.error(f"{e.msg}, {e.reason}")
         enter_key()
         main_menu()
 
@@ -286,8 +287,7 @@ def buy_cards_menu(passenger: Passenger):
             logger.debug(f"{passenger.fullname} entered wrong option, buy_cards_menu")
 
 
-
-def control_menu(admin):
+def control_menu(admin: Admin):
     """admin control menu"""
     admin = admin
     while True:
@@ -340,12 +340,14 @@ def login():
         unique_id = int(input("enter your unique id: "))
         password = input("enter your password: ")
         admin = Admin.login(unique_id, password)
+        logger.debug(f"{admin.fullname} logged in successfully")
         return admin
 
     except AuthenticationError as e:
 
         clear_screen()
         print(e)
+        logger.debug(f"user failed to login due to {e}")
         enter_key()
         main_menu()
 
@@ -353,10 +355,14 @@ def login():
 
         clear_screen()
         print("All unique id characters must be integers !")
+        logger.debug(f"user failed to login due to {e}")
         enter_key()
         main_menu()
+
     except Exception as e:
+
         print(e)
+        logger.debug(f"user failed to login due to {e}")
         enter_key()
         main_menu()
 
