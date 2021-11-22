@@ -317,36 +317,36 @@ def admin_register_trip(admin):
     """register trip and save it"""
     users = admin.load_users()
     if not users:
-        print("there is no user yet to pass as traveler !")
+
+        print("there is no users yet to pass as traveler !")
         enter_key()
         control_menu(admin)
 
     else:
 
         print("__________________ REGISTER NEW TRIP __________________\n")
-        travelers = users
-        travelers_name = list(map(lambda u: u.fullname, travelers))
 
-        print("travelers : ", end=" ")
-        for i, traveler in enumerate(travelers_name, 1):
-            print(f"{i}-", traveler, end="  ")
+        users_name = list(map(lambda u: u.fullname, users))
+
+        print("NOTE: ")
+        print("\tSTATIONS : ", Trip.get_stations())
+        print("\tUSERS : ", end=" ")
+
+        for i, traveler in enumerate(users_name, 1):
+            print(f"{i}. {traveler}", end=" ")
+
+        print("\n", "_" * 80)
 
         try:
 
             origin = input("\norigin >>> ")
             destination = input("destination >>> ")
-            selected_traveler = int(input("traveler >>> "))
+            traveler_num = int(input("traveler >>> "))
+            chosen = users[traveler_num - 1]
 
-            new_trip = Trip(origin.upper(), destination.upper(), travelers[selected_traveler - 1])
+            new_trip = Trip(origin.upper(), destination.upper(), chosen)
             new_trip.save()
             print(f"trip registered successfully")
-
-        except TripError as e:
-
-            clear_screen()
-            print(e)
-            enter_key()
-            control_menu(admin)
 
         except (ValueError, IndexError):
 
@@ -355,14 +355,23 @@ def admin_register_trip(admin):
             enter_key()
             admin_register_trip(admin)
 
+        except Exception as e:  # TripError
+
+            clear_screen()
+            print(e)
+            enter_key()
+            control_menu(admin)
+
 
 def admin_manage_users(admin):
     """manage users section"""
     users = admin.load_users()
     if not users:
-        print("there is no user yet")
+
+        print("there is no users yet")
         enter_key()
         control_menu(admin)
+
     else:
 
         for i, user in enumerate(users, 1):
@@ -397,7 +406,7 @@ def admin_manage_trips(admin: Admin):
             try:
 
                 selected_trip = int(input("which one do you want to delete : "))
-                trips.pop(selected_trip-1)
+                trips.pop(selected_trip - 1)
                 Trip.trips = trips
                 Trip.save()
                 print("the trip removed !")
