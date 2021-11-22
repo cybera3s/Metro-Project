@@ -2,6 +2,10 @@ import register_trip
 from metro.exceptions import *
 from metro.utils import *
 from models import Passenger, SingleTrip, CreditCard, TimeCredit, Admin, Trip
+from logger import Logger
+
+Logger.set_logger(__name__)
+logger = Logger.logger
 
 
 def main_menu():
@@ -11,7 +15,7 @@ def main_menu():
         main_menu_options()
 
         option = input("\nyour option >>> ")
-
+        logger.debug(option)
         # register new Passenger
         if option == "1":
 
