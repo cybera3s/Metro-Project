@@ -143,6 +143,7 @@ def manage_bank_account_menu(passenger: Passenger):
                 logger.error(f"{passenger.fullname} deposit failed due to {e.msg}")
                 enter_key()
 
+        # withdraw
         elif option == "2":
 
             clear_screen()
@@ -163,6 +164,7 @@ def manage_bank_account_menu(passenger: Passenger):
                 logger.error(f"{passenger.fullname} withdraw failed due to {e.msg}")
                 enter_key()
 
+        # get balance
         elif option == "3":
 
             clear_screen()
@@ -170,6 +172,7 @@ def manage_bank_account_menu(passenger: Passenger):
             logger.info(f"{passenger.fullname} get his bank account balance")
             enter_key()
 
+        # Back to main menu
         elif option == "4":
 
             main_menu()
