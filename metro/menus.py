@@ -518,4 +518,4 @@ def admin_manage_cards(admin: Admin):
         print("___________________________ CARDS LIST ___________________________\n")
 
         for i, card in enumerate(cards, 1):
-            print(f" {i} : {card}")
+            print(f" {i}. {repr(card)}")
