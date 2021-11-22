@@ -213,6 +213,7 @@ def trip_management_menu(passenger: Passenger):
 
                 clear_screen()
                 print(e)
+                logger.error(f"{passenger.fullname} , {e} , for buy cards")
                 enter_key()
 
         # back to main menu
@@ -223,6 +224,7 @@ def trip_management_menu(passenger: Passenger):
         else:
 
             wrong_option()
+            logger.error(f"{passenger.fullname} , entered wrong option , trip_management_menu")
 
 
 def buy_cards_menu(passenger: Passenger):
