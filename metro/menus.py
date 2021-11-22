@@ -375,7 +375,7 @@ def admin_register_trip(admin: Admin):
     if not admin.load_users():
 
         print("there is no users yet to pass as traveler !")
-        logger.info(f"{admin.fullname} get empty users list")
+        logger.info(f"{admin.fullname} get empty users list, admin_register_trip")
         enter_key()
         control_menu(admin)
 
@@ -427,16 +427,20 @@ def admin_register_trip(admin: Admin):
             control_menu(admin)
 
 
-def admin_manage_users(admin):
+def admin_manage_users(admin: Admin):
     """manage users section"""
-    users = admin.load_users()
-    if not users:
+
+    if not admin.load_users():
 
         print("there is no users yet")
+        logger.info(f"{admin.fullname} get empty users list , admin_manage_users")
         enter_key()
         control_menu(admin)
 
     else:
+
+        users = admin.load_users()
+        logger.info(f"{admin.fullname} get {len(users)} users list , admin_manage_users")
 
         print("___________________________ USERS LIST ___________________________\n")
 
