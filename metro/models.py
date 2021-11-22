@@ -268,7 +268,7 @@ class TimeCredit(MetroCard):
         return f"time-credit (balance: {self.balance} ,{self.remaining_time.days} days to expire)"
 
     def __repr__(self):
-        return f"owner: {self.owner.fullname}" + self.__str__()
+        return f"owner: {self.owner.fullname}, " + self.__str__()
 
 
 class Trip:
