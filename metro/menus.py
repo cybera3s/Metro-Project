@@ -370,16 +370,19 @@ def login():
         main_menu()
 
 
-def admin_register_trip(admin):
+def admin_register_trip(admin: Admin):
     """register trip and save it"""
-    users = admin.load_users()
-    if not users:
+    if not admin.load_users():
 
         print("there is no users yet to pass as traveler !")
+        logger.info(f"{admin.fullname} get empty users list")
         enter_key()
         control_menu(admin)
 
     else:
+
+        users = admin.load_users()
+        logger.info(f"{admin.fullname} get {len(users)} users , admin_register_trip")
 
         print("__________________ REGISTER NEW TRIP __________________\n")
 
@@ -399,16 +402,19 @@ def admin_register_trip(admin):
             origin = input("\norigin >>> ")
             destination = input("destination >>> ")
             traveler_num = int(input("traveler >>> "))
+            logger.debug(f"{admin.fullname} entered:origin:{origin},destination:{destination},traveler:{traveler_num}")
             chosen = users[traveler_num - 1]
 
             new_trip = Trip(origin.upper(), destination.upper(), chosen)
             new_trip.save()
             print(f"trip registered successfully")
+            logger.debug(f"{admin.fullname} registered a trip successfully, {trip}")
 
-        except (ValueError, IndexError):
+        except (ValueError, IndexError) as e:
 
             clear_screen()
             print("invalid option for traveler ! try again")
+            logger.error(f"{admin.fullname} get error due to {e}")
             enter_key()
             admin_register_trip(admin)
 
@@ -416,6 +422,7 @@ def admin_register_trip(admin):
 
             clear_screen()
             print(e)
+            logger.error(f"{admin.fullname} get error due to {e}")
             enter_key()
             control_menu(admin)
 
