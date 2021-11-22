@@ -274,7 +274,12 @@ def control_menu(admin):
             clear_screen()
             admin_manage_trips(admin)
 
+        # manage cards
         elif option == "4":
+
+            pass
+
+        elif option == "5":
 
             clear_screen()
             main_menu()
