@@ -265,7 +265,7 @@ class TimeCredit(MetroCard):
             raise MetroCardError("expire_date", "the card is expired!")
 
     def __str__(self):
-        return f"time-credit (balance: {self.balance} ,{self.remaining_time.days}days to expire)"
+        return f"time-credit (balance: {self.balance} ,{self.remaining_time.days} days to expire)"
 
 
 class Trip:
