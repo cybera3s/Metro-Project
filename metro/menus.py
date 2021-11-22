@@ -274,7 +274,6 @@ def control_menu(admin):
             clear_screen()
             admin_manage_trips(admin)
 
-
         elif option == "4":
 
             clear_screen()
@@ -383,8 +382,7 @@ def admin_manage_users(admin):
 def admin_manage_trips(admin: Admin):
     """manage trips"""
 
-    trips = admin.load_trips()
-    if not trips:
+    if not admin.load_trips():
 
         clear_screen()
         print("there is no trips yet")
@@ -392,22 +390,27 @@ def admin_manage_trips(admin: Admin):
         control_menu(admin)
 
     else:
+        trips = admin.load_trips()
+        clear_screen()
+        print("__________________ MANAGE TRIPS __________________\n")
 
-        print("__________________ TRIPS LIST __________________\n")
-
-        for i, trip in enumerate(trips, 1):
-            print(f" {i} >>> {repr(trip)}")
-
-        print("\t1. delete", "\t2. Re-value", sep="\n", end="\n")
-
-        opt = input("\n>>> ")
+        print("Operations : ", "\t1. DELETE", "\t2. RE-VALUE", "\t3. BACK", sep="\n")
+        opt = input("\nselect operations : ")
 
         # delete section
         if opt == "1":
 
+            clear_screen()
+            # trips list
+            for i, trip in enumerate(trips, 1):
+                print(f" {i}- {repr(trip)}")
+
             try:
 
-                selected_trip = int(input("which one do you want to delete : "))
+                selected_trip = int(input("\nenter trip number to delete : "))
+                if selected_trip <= 0:
+                    raise IndexError("negative index")
+
                 trips.pop(selected_trip - 1)
                 Trip.trips = trips
                 Trip.save()
@@ -419,10 +422,15 @@ def admin_manage_trips(admin: Admin):
                 clear_screen()
                 print("Invalid options !")
                 enter_key()
-                control_menu(admin)
+                admin_manage_trips(admin)
 
         # re-value section
         elif opt == "2":
+
+            clear_screen()
+            # trips list
+            for i, trip in enumerate(trips, 1):
+                print(f" {i}- {repr(trip)}")
 
             users = admin.load_users()
             if not users:
@@ -433,21 +441,30 @@ def admin_manage_trips(admin: Admin):
 
             else:
 
-                travelers = users
-                travelers_name = list(map(lambda u: u.fullname, travelers))
+                travelers_name = list(map(lambda u: u.fullname, users))
 
-                print("travelers : ", end=" ")
+                print("\nNOTE: ")
+                print("\tUSERS : ", end=" ")
                 for i, traveler in enumerate(travelers_name, 1):
-                    print(f"{i}-", traveler, end="  ")
+                    print(f"{i}.{traveler}", end="  ")
+
+                print("\n\tSTATIONS: ", Trip.get_stations())
 
                 try:
 
-                    selected_trip = int(input("\nwhich one do you want to re-value : "))
-                    origin = input("new origin >>> ")
-                    destination = input("new destination >>> ")
-                    traveler = int(input("new traveler >>> "))
+                    selected_trip = int(input("\nenter trip number to re-value : "))
 
-                    trips[selected_trip - 1] = Trip(origin.upper(), destination.upper(), travelers[traveler - 1])
+                    if selected_trip <= 0:
+                        raise IndexError("negative index")
+
+                    origin = input("\tnew origin : ")
+                    destination = input("\tnew destination : ")
+                    chosen_traveler = int(input("\tnew traveler : "))
+
+                    if chosen_traveler <= 0:
+                        raise IndexError("negative index")
+
+                    trips[selected_trip - 1] = Trip(origin.upper(), destination.upper(), users[chosen_traveler - 1])
                     Trip.trips = trips
                     Trip.save()
 
@@ -459,14 +476,19 @@ def admin_manage_trips(admin: Admin):
                     clear_screen()
                     print("Invalid options !")
                     enter_key()
-                    control_menu(admin)
+                    admin_manage_trips(admin)
 
-                except TripError as e:
+                except Exception as e:  # TripError
 
                     clear_screen()
                     print(e)
                     enter_key()
-                    control_menu(admin)
+                    admin_manage_trips(admin)
+
+        elif opt == "3":
+
+            control_menu(admin)
+
         else:
 
             clear_screen()
