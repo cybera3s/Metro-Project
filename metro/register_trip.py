@@ -1,7 +1,7 @@
 from utils import enter_key, clear_screen
 from models import *
-from metro.menus import trip_management_menu
-from metro.exceptions import TripError
+from menus import trip_management_menu
+from exceptions import TripError
 from logger import Logger
 
 Logger.set_logger(__name__)
