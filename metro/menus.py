@@ -455,16 +455,21 @@ def admin_manage_trips(admin: Admin):
 
         clear_screen()
         print("there is no trips yet")
+        logger.info(f"{admin.fullname} get empty list of trips, admin_manage_trips")
         enter_key()
         control_menu(admin)
 
     else:
+
         trips = admin.load_trips()
+        logger.info(f"{admin.fullname} get {len(trips)} of trips, admin_manage_trips")
+
         clear_screen()
         print("__________________ MANAGE TRIPS __________________\n")
 
         print("Operations : ", "\t1. DELETE", "\t2. RE-VALUE", "\t3. BACK", sep="\n")
         opt = input("\nselect operations : ")
+        logger.debug(f"{admin.fullname} entered {opt} , admin_manage_trips")
 
         # delete section
         if opt == "1":
@@ -477,6 +482,8 @@ def admin_manage_trips(admin: Admin):
             try:
 
                 selected_trip = int(input("\nenter trip number to delete : "))
+                logger.debug(f"{admin.fullname} entered {selected_trip} index for select trip")
+
                 if selected_trip <= 0:
                     raise IndexError("negative index")
 
@@ -484,12 +491,15 @@ def admin_manage_trips(admin: Admin):
                 Trip.trips = trips
                 Trip.save()
                 print("the trip removed !")
+                logger.debug(f"{admin.fullname} has removed successfully , {repr(trips[selected_trip - 1])}")
+
                 enter_key()
 
-            except (IndexError, ValueError):
+            except (IndexError, ValueError) as e:
 
                 clear_screen()
                 print("Invalid options !")
+                logger.error(f"{admin.fullname} get error due to , {e}")
                 enter_key()
                 admin_manage_trips(admin)
 
@@ -501,16 +511,20 @@ def admin_manage_trips(admin: Admin):
             for i, trip in enumerate(trips, 1):
                 print(f" {i}- {repr(trip)}")
 
-            users = admin.load_users()
-            if not users:
+            if not admin.load_users():
 
                 print("there is no user yet to pass as traveler !")
+                logger.info(f"{admin.fullname} get empty list of users, re-value section of admin_manage_trips")
+
                 enter_key()
                 control_menu(admin)
 
             else:
 
-                travelers_name = list(map(lambda u: u.fullname, users))
+                users = admin.load_users()
+                logger.info(f"{admin.fullname} get {len(users)} of users, re-value section of admin_manage_trips")
+
+                travelers_name = list(map(lambda u: u.fullname, users))         # make list of users fullname
 
                 print("\nNOTE: ")
                 print("\tUSERS : ", end=" ")
@@ -522,6 +536,7 @@ def admin_manage_trips(admin: Admin):
                 try:
 
                     selected_trip = int(input("\nenter trip number to re-value : "))
+                    logger.debug(f"{admin.fullname} entered {selected_trip} index to select trip")
 
                     if selected_trip <= 0:
                         raise IndexError("negative index")
@@ -529,6 +544,8 @@ def admin_manage_trips(admin: Admin):
                     origin = input("\tnew origin : ")
                     destination = input("\tnew destination : ")
                     chosen_traveler = int(input("\tnew traveler : "))
+                    logger.debug(f"{admin.fullname} > origin:{origin},destination:{destination}",
+                                 f"chosen_traveler{chosen_traveler} index to select traveler")
 
                     if chosen_traveler <= 0:
                         raise IndexError("negative index")
@@ -538,12 +555,14 @@ def admin_manage_trips(admin: Admin):
                     Trip.save()
 
                     print("the trip revalued !")
+                    logger.info(f"{admin.fullname} re-valued successfully trip, {repr(trips[selected_trip - 1])}")
                     enter_key()
 
-                except (IndexError, ValueError):
+                except (IndexError, ValueError) as e:
 
                     clear_screen()
                     print("Invalid options !")
+                    logger.error(f"{admin.fullname} failed to re-value a trip due to , {e}")
                     enter_key()
                     admin_manage_trips(admin)
 
@@ -551,6 +570,7 @@ def admin_manage_trips(admin: Admin):
 
                     clear_screen()
                     print(e)
+                    logger.error(f"{admin.fullname} failed to re-value a trip due to , {e}")
                     enter_key()
                     admin_manage_trips(admin)
 
