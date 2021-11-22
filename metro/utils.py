@@ -68,4 +68,5 @@ def control_menu_options():
     print("\t1. register trip")
     print("\t2. manage users")
     print("\t3. manage trips")
-    print("\t4. back to main menu")
+    print("\t4. manage cards")
+    print("\t5. back to main menu")
