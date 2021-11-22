@@ -277,7 +277,9 @@ def control_menu(admin):
         # manage cards
         elif option == "4":
 
-            pass
+            clear_screen()
+            admin_manage_cards(admin)
+            enter_key()
 
         elif option == "5":
 
@@ -500,3 +502,20 @@ def admin_manage_trips(admin: Admin):
             print("wrong option!")
             enter_key()
             control_menu(admin)
+
+
+def admin_manage_cards(admin: Admin):
+    """load cards section"""
+    if not admin.load_cards():
+
+        print("There is no cards yet !!!")
+        enter_key()
+        control_menu(admin)
+
+    else:
+
+        cards = admin.load_cards()
+        print("___________________________ CARDS LIST ___________________________\n")
+
+        for i, card in enumerate(cards, 1):
+            print(f" {i} : {card}")
