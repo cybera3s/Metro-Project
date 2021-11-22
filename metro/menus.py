@@ -1,5 +1,5 @@
 import register_trip
-from metro.exceptions import *
+from exceptions import AuthenticationError, BankAccountError, TripError,MetroCardError,RegisterError
 from metro.utils import *
 from models import Passenger, SingleTrip, CreditCard, TimeCredit, Admin, Trip
 from logger import Logger
@@ -92,8 +92,8 @@ def authenticate():
         unique_id = int(input("enter your unique id: "))
         logger.debug(f"{unique_id} entered for unique_id field")
 
-        passenger = Passenger.authenticate(unique_id)
-        return passenger
+        return Passenger.authenticate(unique_id)
+        # return passenger
 
     except AuthenticationError as e:
 
