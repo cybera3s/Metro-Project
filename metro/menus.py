@@ -15,7 +15,7 @@ def main_menu():
         main_menu_options()
 
         option = input("\nyour option >>> ")
-        logger.debug(f"option {option} entered")
+        logger.debug(f"{option} entered, main_menu")
 
         # register new Passenger
         if option == "1":
@@ -28,6 +28,7 @@ def main_menu():
 
             clear_screen()
             passenger = authenticate()
+            logger.info(f"{passenger.fullname} authenticated")
             manage_bank_account_menu(passenger)
 
         # trip management
@@ -35,6 +36,7 @@ def main_menu():
 
             clear_screen()
             passenger = authenticate()
+            logger.info(f"{passenger.fullname} authenticated")
             trip_management_menu(passenger)
 
         # admin panel
@@ -109,7 +111,7 @@ def authenticate():
         main_menu()
 
 
-def manage_bank_account_menu(passenger):
+def manage_bank_account_menu(passenger: Passenger):
     """management panel for bank account"""
     while True:
 
@@ -118,30 +120,39 @@ def manage_bank_account_menu(passenger):
 
         owner = passenger.bank_account.owner.fullname
         option = input(f"\n({owner}\'s account) >>> ")
+        logger.debug(f"{passenger.fullname} entered {option}, manage_bank_account_menu")
 
+        # deposit
         if option == "1":
 
             clear_screen()
             amount = input("enter your amount to deposit: ")
+            logger.debug(f"{passenger.fullname} entered {amount}$ for deposit")
 
             try:
 
                 passenger.bank_account.deposit(amount)
+                logger.info(f"{passenger.fullname} deposit {amount}$ to his bank account successfully")
                 print("deposit was successful !")
                 enter_key()
+
             except BankAccountError as e:
 
                 clear_screen()
                 print(e)
+                logger.error(f"{passenger.fullname} deposit failed due to {e.msg}")
                 enter_key()
 
         elif option == "2":
 
             clear_screen()
             amount = input("enter your amount to withdraw: ")
+            logger.debug(f"{passenger.fullname} entered {amount}$ for withdraw")
+
             try:
 
                 passenger.bank_account.withdraw(amount)
+                logger.info(f"{passenger.fullname} withdraw {amount}$ of his bank account successfully")
                 print("withdraw was successful !")
                 enter_key()
 
@@ -149,12 +160,14 @@ def manage_bank_account_menu(passenger):
 
                 clear_screen()
                 print(e)
+                logger.error(f"{passenger.fullname} withdraw failed due to {e.msg}")
                 enter_key()
 
         elif option == "3":
 
             clear_screen()
             print(passenger.bank_account.get_balance())
+            logger.info(f"{passenger.fullname} get his bank account balance")
             enter_key()
 
         elif option == "4":
@@ -164,6 +177,7 @@ def manage_bank_account_menu(passenger):
         else:
 
             wrong_option()
+            logger.info(f"{passenger.fullname} enter wrong option, manage_bank_account_menu")
 
 
 def trip_management_menu(passenger):
