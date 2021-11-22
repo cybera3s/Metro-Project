@@ -156,6 +156,14 @@ class Admin(Passenger):
         else:
             return False
 
+    @staticmethod
+    def load_cards():
+        """load cards from cards.pk"""
+        if MetroCard.load_cards():
+            return MetroCard.load_cards()
+        else:
+            return False
+
     def __str__(self):
         return f"\n    Is admin: {self.is_admin}" + super().__str__()
 
