@@ -350,7 +350,7 @@ def login():
 
         clear_screen()
         print(e)
-        logger.debug(f"user failed to login due to {e}")
+        logger.error(f"user failed to login due to {e}")
         enter_key()
         main_menu()
 
@@ -358,14 +358,14 @@ def login():
 
         clear_screen()
         print("All unique id characters must be integers !")
-        logger.debug(f"user failed to login due to {e}")
+        logger.error(f"user failed to login due to {e}")
         enter_key()
         main_menu()
 
     except Exception as e:
 
         print(e)
-        logger.debug(f"user failed to login due to {e}")
+        logger.error(f"user failed to login due to {e}")
         enter_key()
         main_menu()
 
