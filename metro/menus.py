@@ -290,11 +290,14 @@ def buy_cards_menu(passenger: Passenger):
 def control_menu(admin: Admin):
     """admin control menu"""
     admin = admin
+
     while True:
+
         clear_screen()
         control_menu_options()
 
         option = input(f"\n(ADMIN: {admin.fullname}) >>> ")
+        logger.debug(f"{admin.fullname} entered {option} , control_menu")
 
         # register trip
         if option == "1":
