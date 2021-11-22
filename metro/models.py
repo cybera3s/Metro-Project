@@ -131,6 +131,8 @@ class Admin(Passenger):
     def login(cls, unique_id, password):
         """login admin with password and unique id and returns that user"""
         user = cls.authenticate(unique_id)
+        if not user.is_admin:
+            raise AuthenticationError("authentication", "this admin user doesn't exists")
         if not user:
             raise AuthenticationError("authentication", "this admin user doesn't exists")
         if user.__password != password:
