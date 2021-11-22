@@ -243,6 +243,8 @@ class CreditCard(MetroCard):
     def __str__(self):
         return f"credit card (balance: {self.balance})"
 
+    def __repr__(self):
+        return f"owner: {self.owner.fullname}, " + self.__str__()
 
 class TimeCredit(MetroCard):
     """Metro time credit card class"""
