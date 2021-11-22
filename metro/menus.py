@@ -225,23 +225,26 @@ def trip_management_menu(passenger: Passenger):
             wrong_option()
 
 
-def buy_cards_menu(passenger):
+def buy_cards_menu(passenger: Passenger):
     """buy cards menu"""
     while True:
 
         clear_screen()
         buy_cards_menu_options()
         option = input(">>> ")
+        logger.debug(f"{passenger.fullname} entered {option} , buy_cards_menu")
 
         # buy Single Trip metro card for 1000
         if option == "1":
 
             card = SingleTrip(passenger)
             passenger.bank_account.withdraw(str(card.price))
+            logger.debug(f"{passenger.fullname} withdraw {card.price}$ of his bank account")
             card.save_card()
 
             clear_screen()
             print("single trip card successfully purchased")
+            logger.debug(f"{passenger.fullname} buy {card} successfully ")
             enter_key()
 
         # buy credit metro card for 5000
@@ -249,10 +252,12 @@ def buy_cards_menu(passenger):
 
             card = CreditCard(passenger)
             passenger.bank_account.withdraw(str(card.price))
+            logger.debug(f"{passenger.fullname} withdraw {card.price}$ of his bank account")
             card.save_card()
 
             clear_screen()
             print("credit card successfully purchased")
+            logger.debug(f"{passenger.fullname} buy {card} successfully ")
             enter_key()
 
         # buy time-credit metro card 6000
@@ -260,10 +265,12 @@ def buy_cards_menu(passenger):
 
             card = TimeCredit(passenger)
             passenger.bank_account.withdraw(str(card.price))
+            logger.debug(f"{passenger.fullname} withdraw {card.price}$ of his bank account")
             card.save_card()
 
             clear_screen()
             print("time-credit card successfully purchased")
+            logger.debug(f"{passenger.fullname} buy {card} successfully ")
             enter_key()
 
         # back to cards menu
@@ -274,6 +281,8 @@ def buy_cards_menu(passenger):
         else:
 
             wrong_option()
+            logger.debug(f"{passenger.fullname} entered wrong option, buy_cards_menu")
+
 
 
 def control_menu(admin):
