@@ -18,14 +18,14 @@ def create_super_user():
         fullname = input("enter your fullname: ")
         phone_number = input("enter your phone: ")
         password = input("enter your password: ")
-        logger.info(f"fullname: {fullname},phone_number:{phone_number},passenger:{password} entered at createsuperuser")
+        logger.info(f"fullname:{fullname},phone_number:{phone_number},password:{password},fields of register admin")
 
         try:
 
             admin = Admin(fullname, phone_number, password)
             clear_screen()
             print(admin.register())
-            logger.info(f"{fullname} admin successfully registered")
+            logger.info(f"{fullname} successfully registered as admin")
             print("\nsuccessfully registered !")
             enter_key()
 
