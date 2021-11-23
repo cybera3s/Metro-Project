@@ -58,4 +58,21 @@ class TestCreditCard(unittest.TestCase):
 
     def setUp(self):
         p = Passenger("sajad safa", "09123456789")
-        card = CreditCard(p, )
+        self.card = CreditCard(p, 1500)
+
+    def test1_use_card(self):
+        self.assertRaises(MetroCardError, self.card.use_card, 15001)
+
+    def test2_use_card(self):
+        self.assertRaises(MetroCardError, self.card.use_card, 0)
+
+    def test3_use_card(self):
+        self.assertRaises(MetroCardError, self.card.use_card, -1)
+
+    def test4_use_card(self):
+        self.assertRaises(MetroCardError, self.card.use_card, "abd")
+
+    def test5_use_card(self):
+        self.card.use_card(500)
+        self.assertEqual(self.card.balance, 1000)
+
