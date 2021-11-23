@@ -239,6 +239,9 @@ class CreditCard(MetroCard):
         self.balance = balance
 
     def use_card(self, price):
+        """Checks the remaining validity
+        and subtracts the desired value from the remaining
+        validity otherwise raises MetroCardError"""
         if (self.balance - price) < 0:
             raise MetroCardError("balance", "not enough balance!")
         self.balance -= price
