@@ -52,3 +52,10 @@ class TestMetroCard(unittest.TestCase):
     def test_load_cards(self):
         self.assertIsInstance(MetroCard.load_cards(), list)
 
+
+class TestCreditCard(unittest.TestCase):
+    """test CreditCard class"""
+
+    def setUp(self):
+        p = Passenger("sajad safa", "09123456789")
+        card = CreditCard(p, )
