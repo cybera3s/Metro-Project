@@ -402,6 +402,9 @@ def admin_register_trip(admin: Admin):
             origin = input("\norigin >>> ")
             destination = input("destination >>> ")
             traveler_num = int(input("traveler >>> "))
+            if traveler_num <= 0:
+                raise IndexError("Zero or negative index for traveler")
+
             logger.debug(f"{admin.fullname} entered:origin:{origin},destination:{destination},traveler:{traveler_num}")
             chosen = users[traveler_num - 1]
 
@@ -410,21 +413,29 @@ def admin_register_trip(admin: Admin):
             print(f"trip registered successfully")
             logger.debug(f"{admin.fullname} registered a trip successfully, {new_trip}")
 
-        except (ValueError, IndexError) as e:
+        except ValueError as e:
 
             clear_screen()
-            print("invalid option for traveler ! try again")
+            print("invalid option for traveler ! must be integer")
+            logger.error(f"{admin.fullname}: entered value is not integer , {e}")
+            enter_key()
+            admin_register_trip(admin)
+
+        except IndexError as e:
+
+            clear_screen()
+            print(f"invalid option {e}")
             logger.error(f"{admin.fullname} get error due to {e}")
             enter_key()
             admin_register_trip(admin)
 
-        except Exception as e:  # TripError
+        except TripError as e:
 
             clear_screen()
             print(e)
-            logger.error(f"{admin.fullname} get error due to {e}")
+            logger.error(f"{admin.fullname} get error, {e}")
             enter_key()
-            control_menu(admin)
+            admin_register_trip(admin)
 
 
 def admin_manage_users(admin: Admin):
