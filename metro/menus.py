@@ -1,6 +1,6 @@
 import register_trip
 from exceptions import AuthenticationError, BankAccountError, TripError, RegisterError
-from metro.utils import *
+from utils import *
 from models import Passenger, SingleTrip, CreditCard, TimeCredit, Admin, Trip
 from logger import Logger
 
