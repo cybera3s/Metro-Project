@@ -44,3 +44,11 @@ class TestAdmin(unittest.TestCase):
 
     def test2_login_fail(self):
         self.assertRaises(AuthenticationError, Admin.login, 123, "")
+
+
+class TestMetroCard(unittest.TestCase):
+    """test class for MetroCard"""
+
+    def test_load_cards(self):
+        self.assertIsInstance(MetroCard.load_cards(), list)
+
