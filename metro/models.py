@@ -76,7 +76,7 @@ class Passenger:
     def authenticate(cls, unique_id: int):
         """authenticates a Passenger by unique_id"""
         if not cls._check_create_user_db():
-            raise AuthenticationError('No file', "Passenger Doesn't exist")
+            raise AuthenticationError('authentication', "Passenger Doesn't exist")
 
         cls.users = cls.load_data()
         users_id = list(map(lambda p: p.__unique_id, cls.users))
@@ -376,7 +376,7 @@ duration: {self.duration()} seconds"""
 class BankAccount:
     """Bank Account for every Passenger"""
 
-    def __init__(self, owner: Passenger, initial_balance: int = 0) -> None:
+    def __init__(self, owner, initial_balance: int = 0) -> None:
         self.owner = owner
         self.__balance = initial_balance
 
