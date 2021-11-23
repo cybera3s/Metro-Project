@@ -15,7 +15,7 @@ def main_menu():
         main_menu_options()
 
         option = input("\nyour option >>> ")
-        logger.debug(f"{option} entered, main_menu")
+        logger.debug(f"\'{option}\' entered, main_menu")
 
         # register new Passenger
         if option == "1":
@@ -28,7 +28,6 @@ def main_menu():
 
             clear_screen()
             passenger = authenticate()
-            logger.info(f"{passenger.fullname} authenticated")
             manage_bank_account_menu(passenger)
 
         # trip management
@@ -36,7 +35,6 @@ def main_menu():
 
             clear_screen()
             passenger = authenticate()
-            logger.info(f"{passenger.fullname} authenticated")
             trip_management_menu(passenger)
 
         # admin panel
