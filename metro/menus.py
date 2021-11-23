@@ -1,5 +1,5 @@
 import register_trip
-from exceptions import AuthenticationError, BankAccountError, TripError, MetroCardError, RegisterError
+from exceptions import AuthenticationError, BankAccountError, TripError, RegisterError
 from metro.utils import *
 from models import Passenger, SingleTrip, CreditCard, TimeCredit, Admin, Trip
 from logger import Logger
@@ -558,7 +558,7 @@ def admin_manage_trips(admin: Admin):
                     if chosen_traveler <= 0:
                         raise IndexError("zero or negative index for traveler")
 
-                    # logger.info(f"{admin.fullname} re-valued successfully trip, {repr(trips[selected_trip - 1])}")
+                    logger.info(f"{admin.fullname} re-valued successfully trip, {repr(trips[selected_trip - 1])}")
                     trips[selected_trip - 1] = Trip(origin.upper(), destination.upper(), users[chosen_traveler - 1])
                     Trip.trips = trips
                     Trip.save()
@@ -586,7 +586,7 @@ def admin_manage_trips(admin: Admin):
 
                     clear_screen()
                     print()
-                    logger.error(f"{admin.fullname} failed to re-value a trip due to , {e}")
+                    logger.error(f"{admin.fullname} failed to re-value a trip, {e}")
                     enter_key()
                     admin_manage_trips(admin)
 
