@@ -238,13 +238,16 @@ class CreditCard(MetroCard):
         super().__init__(price, owner)
         self.balance = balance
 
-    def use_card(self, price):
+    def use_card(self, amount):
         """Checks the remaining validity
         and subtracts the desired value from the remaining
         validity otherwise raises MetroCardError"""
-        if (self.balance - price) < 0:
+        if not isinstance(amount, int) or amount <= 0:
+            raise MetroCardError("amount", "amount must be number!")
+
+        if (self.balance - amount) < 0:
             raise MetroCardError("balance", "not enough balance!")
-        self.balance -= price
+        self.balance -= amount
         self.save_card()
 
     def __str__(self):
