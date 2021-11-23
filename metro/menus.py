@@ -90,8 +90,6 @@ def authenticate():
     try:
 
         unique_id = int(input("enter your unique id: "))
-        logger.debug(f"{unique_id} entered for unique_id field")
-
         return Passenger.authenticate(unique_id)
         # return passenger
 
@@ -170,7 +168,7 @@ def manage_bank_account_menu(passenger):
 
             clear_screen()
             print(passenger.bank_account.get_balance())
-            logger.info(f"{passenger.fullname} get his bank account balance")
+            logger.info(f"{passenger.fullname} get balance {passenger.bank_account.get_balance()}$")
             enter_key()
 
         # Back to main menu
@@ -563,8 +561,8 @@ def admin_manage_trips(admin):
                     origin = input("\tnew origin : ")
                     destination = input("\tnew destination : ")
                     chosen_traveler = int(input("\tnew traveler : "))
-                    logger.debug(f"{admin.fullname} > origin:{origin},destination:{destination}",
-                                 f"chosen_traveler:{chosen_traveler} index to select traveler")
+                    logger.debug(f"{admin.fullname} > origin:{origin},destination:{destination}")
+                    logger.debug(f"{admin.fullname} > {chosen_traveler} index to select traveler")
 
                     if chosen_traveler <= 0:
                         raise IndexError("zero or negative index for traveler")
