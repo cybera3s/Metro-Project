@@ -88,8 +88,9 @@ def authenticate():
     try:
 
         unique_id = int(input("enter your unique id: "))
-        return Passenger.authenticate(unique_id)
-        # return passenger
+        passenger = Passenger.authenticate(unique_id)
+        logger.debug(f"{passenger.fullname} authenticate successfully")
+        return passenger
 
     except AuthenticationError as e:
 
