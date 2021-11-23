@@ -263,7 +263,11 @@ class TimeCredit(MetroCard):
         self.remaining_time = self.expire_date - self.manufacture_date
 
     def use_card(self, price):
-        if self.expire_date != datetime.now():
+        """Checks the remaining validity and expiration date
+         and subtracts the desired value from the remaining
+         validity otherwise raises MetroCardError"""
+
+        if self.expire_date >= datetime.now():
             if (self.balance - price) < 0:
                 raise MetroCardError("balance", "not enough balance!")
             self.balance -= price
