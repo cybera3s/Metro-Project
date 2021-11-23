@@ -33,7 +33,7 @@ def create_super_user():
 
             clear_screen()
             print(e)
-            logger.info(f"admin failed to register due to {e}")
+            logger.error(f"admin failed to register : {e}")
             enter_key()
 
     else:
