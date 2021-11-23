@@ -112,16 +112,16 @@ def authenticate():
         main_menu()
 
 
-def manage_bank_account_menu(passenger: Passenger):
+def manage_bank_account_menu(passenger):
     """management panel for bank account"""
     while True:
 
         clear_screen()
         manage_bank_account_menu_options()
 
-        owner = passenger.bank_account.owner.fullname
+        owner = passenger.fullname
         option = input(f"\n({owner}\'s account) >>> ")
-        logger.debug(f"{passenger.fullname} entered {option}, manage_bank_account_menu")
+        logger.debug(f"{owner} entered {option}, manage_bank_account_menu")
 
         # deposit
         if option == "1":
@@ -184,7 +184,7 @@ def manage_bank_account_menu(passenger: Passenger):
             logger.info(f"{passenger.fullname} enter wrong option, manage_bank_account_menu")
 
 
-def trip_management_menu(passenger: Passenger):
+def trip_management_menu(passenger):
     """trip management menu """
     while True:
 
@@ -228,7 +228,7 @@ def trip_management_menu(passenger: Passenger):
             logger.error(f"{passenger.fullname} , entered wrong option , trip_management_menu")
 
 
-def buy_cards_menu(passenger: Passenger):
+def buy_cards_menu(passenger):
     """buy cards menu"""
     while True:
 
@@ -287,7 +287,7 @@ def buy_cards_menu(passenger: Passenger):
             logger.debug(f"{passenger.fullname} entered wrong option, buy_cards_menu")
 
 
-def control_menu(admin: Admin):
+def control_menu(admin):
     """admin control menu"""
     admin = admin
 
@@ -370,7 +370,7 @@ def login():
         main_menu()
 
 
-def admin_register_trip(admin: Admin):
+def admin_register_trip(admin):
     """register trip and save it"""
     if not admin.load_users():
 
@@ -438,7 +438,7 @@ def admin_register_trip(admin: Admin):
             admin_register_trip(admin)
 
 
-def admin_manage_users(admin: Admin):
+def admin_manage_users(admin):
     """manage users section"""
 
     if not admin.load_users():
@@ -459,7 +459,7 @@ def admin_manage_users(admin: Admin):
             print(f" {i} : " + 60 * "_" + f"{user}")
 
 
-def admin_manage_trips(admin: Admin):
+def admin_manage_trips(admin):
     """manage trips"""
 
     # there is no trips
@@ -613,7 +613,7 @@ def admin_manage_trips(admin: Admin):
             control_menu(admin)
 
 
-def admin_manage_cards(admin: Admin):
+def admin_manage_cards(admin):
     """load cards section"""
     if not admin.load_cards():
 
