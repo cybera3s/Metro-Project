@@ -1,5 +1,5 @@
 import register_trip
-from exceptions import AuthenticationError, BankAccountError, TripError,MetroCardError,RegisterError
+from exceptions import AuthenticationError, BankAccountError, TripError, MetroCardError, RegisterError
 from metro.utils import *
 from models import Passenger, SingleTrip, CreditCard, TimeCredit, Admin, Trip
 from logger import Logger
@@ -451,11 +451,12 @@ def admin_manage_users(admin: Admin):
 def admin_manage_trips(admin: Admin):
     """manage trips"""
 
+    # there is no trips
     if not admin.load_trips():
 
         clear_screen()
         print("there is no trips yet")
-        logger.info(f"{admin.fullname} get empty list of trips, admin_manage_trips")
+        logger.info(f"{admin.fullname} : empty list of trips, admin_manage_trips")
         enter_key()
         control_menu(admin)
 
@@ -481,25 +482,32 @@ def admin_manage_trips(admin: Admin):
 
             try:
 
-                selected_trip = int(input("\nenter trip number to delete : "))
-                logger.debug(f"{admin.fullname} entered {selected_trip} index for select trip")
+                selected_trip = int(input("\nEnter the desired trip number: "))
+                logger.debug(f"{admin.fullname} enter {selected_trip} index for select trip")
 
-                if selected_trip <= 0:
-                    raise IndexError("negative index")
+                if selected_trip <= 0:      # if entered value is <= 0
+                    raise IndexError("zero or negative index for trip")
 
+                logger.debug(f"{admin.fullname}: removed successfully , {repr(trips[selected_trip - 1])}")
                 trips.pop(selected_trip - 1)
                 Trip.trips = trips
                 Trip.save()
                 print("the trip removed !")
-                logger.debug(f"{admin.fullname} has removed successfully , {repr(trips[selected_trip - 1])}")
-
                 enter_key()
-
-            except (IndexError, ValueError) as e:
+            # if entered value is not integer
+            except ValueError as e:
 
                 clear_screen()
-                print("Invalid options !")
-                logger.error(f"{admin.fullname} get error due to , {e}")
+                print("Invalid options for trip ! entered value must be number")
+                logger.error(f"{admin.fullname}: entered value is not integer, {e}")
+                enter_key()
+                admin_manage_trips(admin)
+            # if entered value is <= 0
+            except IndexError as e:
+
+                clear_screen()
+                print(f"Invalid options ! {e}")
+                logger.error(f"{admin.fullname} enter {e}")
                 enter_key()
                 admin_manage_trips(admin)
 
@@ -510,11 +518,11 @@ def admin_manage_trips(admin: Admin):
             # trips list
             for i, trip in enumerate(trips, 1):
                 print(f" {i}- {repr(trip)}")
-
+            # if there is no users
             if not admin.load_users():
 
                 print("there is no user yet to pass as traveler !")
-                logger.info(f"{admin.fullname} get empty list of users, re-value section of admin_manage_trips")
+                logger.info(f"{admin.fullname} empty list of users, re-value section, admin_manage_trips")
 
                 enter_key()
                 control_menu(admin)
@@ -522,54 +530,62 @@ def admin_manage_trips(admin: Admin):
             else:
 
                 users = admin.load_users()
-                logger.info(f"{admin.fullname} get {len(users)} of users, re-value section of admin_manage_trips")
+                logger.info(f"{admin.fullname} get {len(users)} users, re-value section, admin_manage_trips")
 
-                travelers_name = list(map(lambda u: u.fullname, users))         # make list of users fullname
+                travelers_name = list(map(lambda u: u.fullname, users))  # make list of users fullname
 
                 print("\nNOTE: ")
                 print("\tUSERS : ", end=" ")
                 for i, traveler in enumerate(travelers_name, 1):
                     print(f"{i}.{traveler}", end="  ")
 
-                print("\n\tSTATIONS: ", Trip.get_stations())
+                print("\n\tSTATIONS: ", Trip.get_stations())     # get stations
 
                 try:
 
-                    selected_trip = int(input("\nenter trip number to re-value : "))
-                    logger.debug(f"{admin.fullname} entered {selected_trip} index to select trip")
+                    selected_trip = int(input("\nEnter the desired trip number to re-value: "))
+                    logger.debug(f"{admin.fullname} entered {selected_trip} to select trip")
 
                     if selected_trip <= 0:
-                        raise IndexError("negative index")
+                        raise IndexError("zero or negative index for trip, re-valued")
 
                     origin = input("\tnew origin : ")
                     destination = input("\tnew destination : ")
                     chosen_traveler = int(input("\tnew traveler : "))
                     logger.debug(f"{admin.fullname} > origin:{origin},destination:{destination}",
-                                 f"chosen_traveler{chosen_traveler} index to select traveler")
+                                 f"chosen_traveler:{chosen_traveler} index to select traveler")
 
                     if chosen_traveler <= 0:
-                        raise IndexError("negative index")
+                        raise IndexError("zero or negative index for traveler")
 
+                    # logger.info(f"{admin.fullname} re-valued successfully trip, {repr(trips[selected_trip - 1])}")
                     trips[selected_trip - 1] = Trip(origin.upper(), destination.upper(), users[chosen_traveler - 1])
                     Trip.trips = trips
                     Trip.save()
 
                     print("the trip revalued !")
-                    logger.info(f"{admin.fullname} re-valued successfully trip, {repr(trips[selected_trip - 1])}")
                     enter_key()
 
-                except (IndexError, ValueError) as e:
+                except ValueError as e:
 
                     clear_screen()
-                    print("Invalid options !")
-                    logger.error(f"{admin.fullname} failed to re-value a trip due to , {e}")
+                    print("Invalid option ! index must be number !")
+                    logger.error(f"{admin.fullname} failed to re-value a trip, {e}")
                     enter_key()
                     admin_manage_trips(admin)
 
-                except Exception as e:  # TripError
+                except IndexError as e:
 
                     clear_screen()
-                    print(e)
+                    print(f"Invalid options ! {e}")
+                    logger.error(f"{admin.fullname} failed to re-value a trip , {e}")
+                    enter_key()
+                    admin_manage_trips(admin)
+
+                except TripError as e:
+
+                    clear_screen()
+                    print()
                     logger.error(f"{admin.fullname} failed to re-value a trip due to , {e}")
                     enter_key()
                     admin_manage_trips(admin)
