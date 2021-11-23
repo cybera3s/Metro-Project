@@ -1,6 +1,6 @@
 from utils import enter_key, clear_screen
 from models import *
-from menus import trip_management_menu
+import menus
 from exceptions import TripError
 from logger import Logger
 
@@ -8,7 +8,7 @@ Logger.set_logger(__name__)
 logger = Logger.logger
 
 
-def register_trip(passenger):
+def register_trip(passenger: Passenger):
     """register trip section"""
 
     # if passenger has no cards
@@ -63,7 +63,7 @@ def register_trip(passenger):
             print("invalid option, try again")
             logger.error(f"{passenger.fullname} entered wrong option , {e}")
             enter_key()
-            trip_management_menu(passenger)
+            menus.trip_management_menu(passenger)
 
         except MetroCardError as e:
 
@@ -71,7 +71,7 @@ def register_trip(passenger):
             print(e)
             logger.error(f"{passenger.fullname} , {e.reason} ,{e.msg}")
             enter_key()
-            trip_management_menu(passenger)
+            menus.trip_management_menu(passenger)
 
         while True:
 
@@ -95,7 +95,7 @@ def register_trip(passenger):
                 logger.debug(f"{repr(trip)} was saved")
                 print("__________________ TRIP INFO __________________", trip, sep="\n")
                 enter_key()
-                trip_management_menu(passenger)
+                menus.trip_management_menu(passenger)
 
             except TripError as e:
 
